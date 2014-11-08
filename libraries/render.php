@@ -57,6 +57,7 @@
   
   //$im = render_block("BrainStoneMod:brainLogicBlockOffC", "BrainStoneMod:brainStoneMachineTop", "BrainStoneMod:brainLogicBlockOnQ");
   
+  mkdir("../cache/render/$type", 0644, true);
   imagepng($im, "../cache/render/$type/" . $params[0] . ".png");
   
   // Resizing
