@@ -30,7 +30,7 @@
       
       switch($row["RenderAs"]) {
       case "Block":
-        $cache_path = "../cache/render/blocks/$modid";
+        $cache_path = "../cache/render/$modid/blocks";
         $cache_file = "$cache_path/$item.png";
         
         if(file_exists($cache_file)) {
