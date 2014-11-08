@@ -1,7 +1,7 @@
 <?php
   require_once("mysql.php");
   
-  $params = explode("/", strtolower($_SERVER["REQUEST_URI"]));
+  $params = array_shift(explode("/", strtolower($_SERVER["REQUEST_URI"])));
   connect_mysqli();
   
   if($params[0] == "crafting") {
@@ -23,10 +23,6 @@
     }
     
     $result = $mysqli->query("SELECT `RenderAs`, (SELECT `File` FROM `RenderTypes` WHERE `ID` = `RenderType` LIMIT 1) AS `RenderFile`, `Textures` FROM `RenderData` WHERE `ModID` = (SELECT `ID` FROM `ModIDs` WHERE `Name` = '" . $mysqli->real_escape_string($modid) . "' LIMIT 1) AND `Name` = '" . $mysqli->real_escape_string($item) . "' LIMIT 1");
-    
-    echo "<pre>";
-    print_r($params);
-    echo "</pre>";
     
     if($result->num_rows) {
       $row = $result->fetch_assoc();
@@ -63,7 +59,7 @@
   imagesavealpha($image, true);
   imagecopyresampled($image, $im, 0, 0, 0, 0, $final_size, $final_size, $size, $size);
   
-  //header("Content-Type: image/png");
+  header("Content-Type: image/png");
   
   imagepng($image);
   //imagepng($im, "../cache/cache.png");
