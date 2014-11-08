@@ -59,7 +59,7 @@
   imagesavealpha($image, true);
   imagecopyresampled($image, $im, 0, 0, 0, 0, $final_size, $final_size, $size, $size);
   
-  header("Content-Type: image/png");
+  //header("Content-Type: image/png");
   
   imagepng($image);
   //imagepng($im, "../cache/cache.png");
