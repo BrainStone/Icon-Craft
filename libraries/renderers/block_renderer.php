@@ -46,9 +46,9 @@
     $white = imagecolorallocate($im, 255, 255, 255);
     $red = imagecolorallocate($im, 255, 0, 0);
     
-    imagetranslatedtexture($im, $first_poligon, imagelight(load_png($left_side), 42));
+    imagetranslatedtexture($im, $first_poligon, imagelight(load_png($left_side), 84));
     imagetranslatedtexture($im, $second_poligon, load_png($top_side));
-    imagetranslatedtexture($im, $third_poligon, imagelight(load_png($right_side), 84));
+    imagetranslatedtexture($im, $third_poligon, imagelight(load_png($right_side), 42));
     
     return $im;
   }
