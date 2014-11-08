@@ -12,7 +12,7 @@
     
     $texture = load_png($texture);
     
-    imagecopy($im, $texture, 0, 0, 0, 0, $size, $size, imagesx($texture), imagesy($texture));
+    imagecopyresized($im, $texture, 0, 0, 0, 0, $size, $size, imagesx($texture), imagesy($texture));
     
     return $im;
   }
