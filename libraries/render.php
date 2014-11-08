@@ -24,12 +24,12 @@
     
     $result = $mysqli->query("SELECT `RenderAs`, (SELECT `File` FROM `RenderTypes` WHERE `ID` = `RenderType` LIMIT 1) AS `RenderFile`, `Textures` FROM `RenderData` WHERE `ModID` = (SELECT `ID` FROM `ModIDs` WHERE `Name` = '" . $mysqli->real_escape_string($modid) . "' LIMIT 1) AND `Name` = '" . $mysqli->real_escape_string($item) . "' LIMIT 1");
     
+    echo "<pre>";
+    print_r($result);
+    echo "</pre>";
+    
     if($result->num_rows) {
       $row = $result->fetch_assoc();
-      
-      echo "<pre>";
-      print_r($row);
-      echo "</pre>";
       
       switch($row["RenderAs"]) {
       case "Block":
