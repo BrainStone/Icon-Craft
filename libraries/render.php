@@ -1,7 +1,8 @@
 <?php
   require_once("mysql.php");
   
-  $params = array_shift(explode("/", strtolower($_SERVER["REQUEST_URI"])));
+  $params = explode("/", strtolower($_SERVER["REQUEST_URI"]));
+  array_shift($params);
   connect_mysqli();
   
   if($params[0] == "crafting") {
@@ -59,7 +60,7 @@
   imagesavealpha($image, true);
   imagecopyresampled($image, $im, 0, 0, 0, 0, $final_size, $final_size, $size, $size);
   
-  //header("Content-Type: image/png");
+  header("Content-Type: image/png");
   
   imagepng($image);
   //imagepng($im, "../cache/cache.png");
