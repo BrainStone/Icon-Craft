@@ -2,7 +2,7 @@
   function load_png($texture) {
     $texture = strtolower($texture);
     
-    if(strpos(":", $texture) === false) {
+    if(strpos($texture, ":") === false) {
       $modid = "minecraft";
     } else {
       list($modid, $texture) = explode(":", $texture);
