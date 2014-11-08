@@ -30,16 +30,26 @@
       
       switch($row["RenderAs"]) {
       case "Block":
-        require_once("renderers/block_renderer.php");
-        $type = "block";
+        $cache_path = "../cache/render/blocks/$modid";
+        $cache_file = "$cache_path/$item.png";
         
-        list($left, $top, $right) = explode(",", $row["Textures"]);        
-        $im = render_block($left, $top, $right);
+        if(file_exists($cache_file)) {
+          $im = imagecreatefrompng($cache_file);
+          
+          $size = imagesx($im);
+        } else {
+          require_once("renderers/block_renderer.php");
+          
+          list($left, $top, $right) = explode(",", $row["Textures"]);        
+          $im = render_block($left, $top, $right);
+          
+          mkdir($cache_path, 0775, true);
+          imagepng($im, $cache_file);
+        }
         
         break;
       case "Item":
         require_once("renderers/item_renderer.php");
-        $type = "item";
         
         $im = render_item($row["Textures"]);
         
@@ -47,7 +57,6 @@
       }
     } else {
       require_once("renderers/block_renderer.php");
-      $type = "block";
       
       $im = render_block("diamond_block", "diamond_block", "diamond_block");
     }
@@ -56,9 +65,6 @@
   }
   
   //$im = render_block("BrainStoneMod:brainLogicBlockOffC", "BrainStoneMod:brainStoneMachineTop", "BrainStoneMod:brainLogicBlockOnQ");
-  
-  mkdir("../cache/render/$type", 0644, true);
-  imagepng($im, "../cache/render/$type/" . $params[0] . ".png");
   
   // Resizing
   $image = imagecreatetruecolor($final_size, $final_size);
