@@ -8,8 +8,24 @@
       list($modid, $texture) = explode(":", $texture);
     }
     
-    // Attempt to open 
-    $im = @imagecreatefrompng("../images/$modid/$texture.png");
+    // Attempt to open
+    if(strpos($texture, ";") === false) {
+      $type = "";  
+    } else {    
+      list($type, $texture) = explode(";", $texture);
+    }
+    
+    switch($type) {
+    case "block":
+      $im = @imagecreatefrompng("../images/$modid/blocks/$texture.png");
+      break;
+    case "item":
+      $im = @imagecreatefrompng("../images/$modid/items/$texture.png");
+      break;
+    default:
+      $im = @imagecreatefrompng("../images/$modid/blocks/$texture.png");
+      if(!$im) $im = @imagecreatefrompng("../images/$modid/items/$texture.png");
+    }
     
     // See if it failed
     if(!$im)

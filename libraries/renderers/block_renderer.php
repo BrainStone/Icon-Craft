@@ -1,8 +1,11 @@
 <?php
   require_once("common_renderer.php");
   
+  $size = 2048;
+  
   function render_block($left_side, $top_side, $right_side) {  
-    $size = 2048;
+    global $size;
+    
     $x1 = (2 - sqrt(3)) * 0.25 * $size;
     $x2 = 0.5 * $size;
     $x3 = (2 + sqrt(3)) * 0.25 * $size;

@@ -1,7 +1,11 @@
 <?php
   require_once("common_renderer.php");
   
-  function render_item($texture, $size) {
+  $size = 2048;
+  
+  function render_item($texture) {
+    global $size;
+  
     $im = imagecreatetruecolor($size, $size);
     imagealphablending($im, false);
     imagesavealpha($im, true);
