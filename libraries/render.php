@@ -43,6 +43,8 @@
         break;
       }
     } else {
+      require_once("renderers/block_renderer.php");
+      
       $im = render_block("diamond_block", "diamond_block", "diamond_block");
     }
     
