@@ -23,7 +23,15 @@
       list($modid, $item) = explode(":", $item);
     }
     
-    $result = $mysqli->query("SELECT `RenderAs`, (SELECT `File` FROM `RenderTypes` WHERE `ID` = `RenderType` LIMIT 1) AS `RenderFile`, `Textures` FROM `RenderData` WHERE `ModID` = (SELECT `ID` FROM `ModIDs` WHERE `ModID` = '" . $mysqli->real_escape_string($modid) . "' LIMIT 1) AND `Name` = '" . $mysqli->real_escape_string($item) . "' LIMIT 1");
+    if(strpos($item, ";") === false) {
+      $meta = 0;
+    } else {
+      list($item, $meta) = explode(";", $item);
+      
+      $meta = min(15, max(0, intval($meta)));
+    }   
+    
+    $result = $mysqli->query("SELECT `RenderAs`, (SELECT `File` FROM `RenderTypes` WHERE `ID` = `RenderType` LIMIT 1) AS `RenderFile`, `Textures` FROM `RenderData` WHERE `ModID` = (SELECT `ID` FROM `ModIDs` WHERE `ModID` = '" . $mysqli->real_escape_string($modid) . "' LIMIT 1) AND `Name` = '" . $mysqli->real_escape_string($item) . "' AND (`Meta` = '*' OR `Meta` = '$meta') ORDER BY `Meta` ASC LIMIT 1");
     
     if($result->num_rows) {
       $row = $result->fetch_assoc();
@@ -61,10 +69,8 @@
       $im = render_block("diamond_block", "diamond_block", "diamond_block");
     }
     
-    $final_size = (isset($params[1]) && is_numeric($params[1])) ? intval($params[1]) : 512;
+    $final_size = (isset($params[1]) && is_numeric($params[1])) ? min(4096, max(16, intval($params[1]))) : 512;
   }
-  
-  //$im = render_block("BrainStoneMod:brainLogicBlockOffC", "BrainStoneMod:brainStoneMachineTop", "BrainStoneMod:brainLogicBlockOnQ");
   
   // Resizing
   $image = imagecreatetruecolor($final_size, $final_size);
