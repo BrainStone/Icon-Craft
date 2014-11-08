@@ -1,8 +1,15 @@
 <?php
-  function load_png($imgname)
-  {
+  function load_png($texture) {
+    $texture = strtolower($texture);
+    
+    if(strpos(":", $texture) === false) {
+      $modid = "minecraft";
+    } else {
+      list($modid, $texture) = explode(":", $texture);
+    }
+    
     // Attempt to open 
-    $im = @imagecreatefrompng($imgname);
+    $im = @imagecreatefrompng("../images/$modid/$texture.png");
     
     // See if it failed
     if(!$im)
@@ -108,9 +115,15 @@
   $white = imagecolorallocate($im, 255, 255, 255);
   $red = imagecolorallocate($im, 255, 0, 0);
   
-  imagetranslatedtexture($im, $first_poligon, imagelight(load_png("brainLogicBlockOffC.png"), 42));
-  imagetranslatedtexture($im, $second_poligon, load_png("brainStoneMachineTop.png"));
-  imagetranslatedtexture($im, $third_poligon, imagelight(load_png("brainLogicBlockOnQ.png"), 84));
+  if(rand(0, 1) == 1) {
+    imagetranslatedtexture($im, $first_poligon, imagelight(load_png("BrainStoneMod:brainLogicBlockOffC"), 42));
+    imagetranslatedtexture($im, $second_poligon, load_png("BrainStoneMod:brainStoneMachineTop"));
+    imagetranslatedtexture($im, $third_poligon, imagelight(load_png("BrainStoneMod:brainLogicBlockOnQ"), 84));
+  } else {
+    imagetranslatedtexture($im, $first_poligon, imagelight(load_png("diamond_block"), 42));
+    imagetranslatedtexture($im, $second_poligon, load_png("minecraft:diamond_block"));
+    imagetranslatedtexture($im, $third_poligon, imagelight(load_png("diamond_block"), 84));
+  }
   
   // Resizing
   $image = imagecreatetruecolor($final_size, $final_size);
@@ -119,5 +132,5 @@
   imagecopyresampled($image, $im, 0, 0, 0, 0, $final_size, $final_size, $size, $size);
   
   imagepng($image);
-  imagepng($im, "cache.png");
+  imagepng($im, "../cache/cache.png");
 ?>
