@@ -31,6 +31,7 @@
       switch($row["RenderAs"]) {
       case "Block":
         require_once("renderers/block_renderer.php");
+        $type = "block";
         
         list($left, $top, $right) = explode(",", $row["Textures"]);        
         $im = render_block($left, $top, $right);
@@ -38,6 +39,7 @@
         break;
       case "Item":
         require_once("renderers/item_renderer.php");
+        $type = "item";
         
         $im = render_item($row["Textures"]);
         
@@ -45,6 +47,7 @@
       }
     } else {
       require_once("renderers/block_renderer.php");
+      $type = "block";
       
       $im = render_block("diamond_block", "diamond_block", "diamond_block");
     }
@@ -53,6 +56,8 @@
   }
   
   //$im = render_block("BrainStoneMod:brainLogicBlockOffC", "BrainStoneMod:brainStoneMachineTop", "BrainStoneMod:brainLogicBlockOnQ");
+  
+  imagepng($im, "../cache/render/$type/" . $params[0] . ".png");
   
   // Resizing
   $image = imagecreatetruecolor($final_size, $final_size);
@@ -63,5 +68,4 @@
   header("Content-Type: image/png");
   
   imagepng($image);
-  //imagepng($im, "../cache/cache.png");
 ?>
