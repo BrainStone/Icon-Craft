@@ -1,7 +1,7 @@
 <?php
   require_once("mysql.php");
   
-  $params = explode("/", $_SERVER["REQUEST_URI"]);
+  $params = explode("/", strtolower($_SERVER["REQUEST_URI"]));
   connect_mysqli();
   
   if($params[0] == "crafting") {
@@ -14,7 +14,7 @@
     // Custom item creation processes like custom furnaces from mods
     // TODO Special
   } else {
-    $item = strtolower($params[0]);
+    $item = $params[0];
     
     if(strpos($item, ":") === false) {
       $modid = "minecraft";
@@ -26,6 +26,10 @@
     
     if($result->num_rows) {
       $row = $result->fetch_assoc();
+      
+      echo "<pre>";
+      print_r($row);
+      echo "</pre>";
       
       switch($row["RenderAs"]) {
       case "Block":
@@ -59,7 +63,7 @@
   imagesavealpha($image, true);
   imagecopyresampled($image, $im, 0, 0, 0, 0, $final_size, $final_size, $size, $size);
   
-  header("Content-Type: image/png");
+  //header("Content-Type: image/png");
   
   imagepng($image);
   //imagepng($im, "../cache/cache.png");
