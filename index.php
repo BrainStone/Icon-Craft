@@ -1,12 +1,11 @@
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv=content-type content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="/includes/css/style.css">
+<link rel="stylesheet" type="text/css" href="/includes/css/menu.css">
 
-<script src="includes/js/script.js"></script>
-<script src="includes/js/jquery-latest.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="includes/css/style.css">
-<link rel="stylesheet" type="text/css" href="includes/css/menu.css">
+<script defer src="/includes/js/jquery-latest.min.js"></script>
+<script defer src="/includes/js/script.js"></script>
 
 <title>INDEX</title>
 
