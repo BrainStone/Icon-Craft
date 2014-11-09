@@ -68,7 +68,7 @@
     } else {
       require_once("renderers/block_renderer.php");
       
-      $im = render_block("diamond_block", "diamond_block", "diamond_block");
+      $im = render_block("", "", "");
     }
     
     $final_size = (isset($params[1]) && is_numeric($params[1])) ? min(4096, max(16, intval($params[1]))) : 512;
