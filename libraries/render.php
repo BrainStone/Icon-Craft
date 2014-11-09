@@ -60,7 +60,6 @@
           
           @mkdir($cache_path, 0775, true);
           imagepng($im, $cache_file);
-          LossylessHelper::lossylessImg($cache_file);
         }
         
         break;
