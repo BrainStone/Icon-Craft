@@ -53,7 +53,6 @@
           $size = imagesx($im);
         } else {
           require_once("renderers/block_renderer.php");
-          require_once("LossylessHelper.php");
           
           list($left, $top, $right) = explode(",", $row["Textures"]);        
           $im = render_block($left, $top, $right);
