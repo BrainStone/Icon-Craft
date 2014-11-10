@@ -49,10 +49,12 @@
         
         if(file_exists($cache_file)) {
           $im = imagecreatefrompng($cache_file);
+          touch($cache_file);
           
           $size = imagesx($im);
         } elseif(file_exists("$cache_file.optimized")) {
           $im = imagecreatefrompng("$cache_file.optimized");
+          touch("$cache_file.optimized");
           
           $size = imagesx($im);
         } else {
