@@ -51,6 +51,10 @@
           $im = imagecreatefrompng($cache_file);
           
           $size = imagesx($im);
+        } elseif(file_exists("$cache_file.optimized")) {
+          $im = imagecreatefrompng("$cache_file.optimized");
+          
+          $size = imagesx($im);
         } else {
           require_once("renderers/block_renderer.php");
           
