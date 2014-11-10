@@ -1,0 +1,1 @@
+find /var/www/icon-craft/cache/render/ -mtime +30 -exec rm {} \;
