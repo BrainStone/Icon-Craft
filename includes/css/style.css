@@ -59,9 +59,20 @@ a.schwarz:active { color:#000000; }
 
 }
 
+
+.header_table {
+    
+    height: 100%;
+    width: 100%;
+
+    color:#000000;
+
+
+}
+
 .header_left {
 
-	width:200px;
+	width:250px;
 
     color:#000000;
 
@@ -76,20 +87,20 @@ a.schwarz:active { color:#000000; }
 
     color:#000000;
 
-    padding: 0px;
+    vertical-align: bottom;
+    
+    padding: 30px;
 
 }
 
 .header_right {
 
-	position: absolute;
-
+    width: 250px;
     text-align: right;
-    right: 10px;
-	
-    color:#000000;
-
-    padding: 0px;
+    
+    vertical-align: top;
+    
+    padding: 10px;
 
 }
 
