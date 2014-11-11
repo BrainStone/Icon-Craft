@@ -48,3 +48,5 @@ libraries/translations/*.php
 libraries/mysql_login.php
 sitemap.xml
 google*.html
+mu-*-*-*-*.txt
+git_push.php
