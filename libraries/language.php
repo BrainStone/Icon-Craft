@@ -101,7 +101,7 @@
     <div class="lang_selector">
       <form method="POST"><?php
     foreach($languages as $language => $name) {
-      echo "        <div class=\"$language" . (($_SESSION["language"] == $language)? " selected" : "") . "\"><div>\n          <input type=\"image\" src=\"/flags/sprite.png\" alt=\"$name\" title=\"$name\" name=\"$language\">\n        </div></div>\n";
+      echo "        <div class=\"$language" . (($_SESSION["language"] == $language)? " selected" : "") . "\"><div>\n          <input type=\"image\" src=\"/includes/images/sprite.png\" alt=\"$name\" title=\"$name\" name=\"$language\">\n        </div></div>\n";
     }
 ?>
       </form>

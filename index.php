@@ -1,18 +1,27 @@
 <?php
+header("Content-Type: text/html;charset=utf-8");
+
+require_once("libraries/language.php");
+
+// Cache the page
+require_once("libraries/cache.php");
+// Make HTML as small as possible!
+require_once("libraries/minimize.php");
 
 $type = isset($_REQUEST["type"])? $_REQUEST["type"] : "";
 
 if ($type == "all") normal();
 
 ?>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="<?php echo $_SESSION["language"]; ?>">
 <head>
-<meta charset="UTF-8">
 
 <link rel="stylesheet" type="text/css" href="/includes/css/style.css">
 <link rel="stylesheet" type="text/css" href="/includes/css/menu.css">
-
+<?php
+  print_hreflang();
+?>
 <script defer src="/includes/js/jquery-latest.min.js"></script>
 <script defer src="/includes/js/script.js"></script>
 
@@ -20,7 +29,11 @@ if ($type == "all") normal();
 
 
 </head>
-<body><br />
+<body>
+<?php
+  print_language_selector();
+?>
+<br />
 
 <table border='0' align='center' class='index_table'>
     <tr>

@@ -127,3 +127,65 @@ a.schwarz:active { color:#000000; }
     border-top: 1px solid #000000;
 
 }
+
+
+div.lang_selector div {
+  margin: 1px;
+  display: inline-block;
+  line-height: 0px;
+}
+
+div.lang_selector div.selected {
+  margin: 0px;
+  border: 1px black solid;
+}
+
+div.lang_selector div div {
+  position: relative;
+  overflow: hidden;
+  margin: 5px;
+}
+
+div.lang_selector input {
+  position: absolute;
+  width: 82px;
+  height: 80px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;  
+}
+
+div.lang_selector div.en input {
+  top: 0px;
+}
+
+div.lang_selector div.de input {
+  top: -40px;
+}
+
+@media only screen and (max-device-width: 800px) {
+  div.lang_selector div div {
+    width: 60px;
+    height: 40px;
+    margin: 10px;
+  }
+  
+  div.lang_selector div div input{
+    left: 0px;
+  }
+  
+  footer > div {
+    padding-left: 10px;
+  }
+}
+
+@media not screen and (max-device-width: 800px) {
+  div.lang_selector div div {
+    width: 22px;
+    height: 16px;
+  }
+  
+  div.lang_selector div div input {
+    left: -60px;
+  }
+}
