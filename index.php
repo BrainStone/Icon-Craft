@@ -8,7 +8,7 @@ require_once("libraries/cache.php");
 // Make HTML as small as possible!
 require_once("libraries/minimize.php");
 
-$type = isset($_REQUEST["type"])? $_REQUEST["type"] : "";
+if (isset($_REQUEST["type"])) $type = $_REQUEST["type"];
 
 if ($type == "all") normal();
 
@@ -49,7 +49,7 @@ if ($type == "all") normal();
 
 function normal() {
 
-$ausgabe = "Hier ist die ausgabe";
+$ausgabe .= "Hier ist die ausgabe";
 $ausgabe .= "hmmm";
 
 print $ausgabe;
