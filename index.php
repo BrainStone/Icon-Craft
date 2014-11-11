@@ -5,17 +5,16 @@ if (isset($_REQUEST["type"])) $type = $_REQUEST["type"];
 if ($type == "all") normal();
 
 ?>
-
-<!doctype html>
-<html><head>
-
+<!DOCTYPE html>
+<html>
+<head>
 <meta charset="UTF-8">
 
-<script src="includes/js/script.js"></script>
-<script src="includes/js/jquery-latest.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/includes/css/style.css">
+<link rel="stylesheet" type="text/css" href="/includes/css/menu.css">
 
-<link rel="stylesheet" type="text/css" href="includes/css/style.css">
-<link rel="stylesheet" type="text/css" href="includes/css/menu.css">
+<script defer src="/includes/js/jquery-latest.min.js"></script>
+<script defer src="/includes/js/script.js"></script>
 
 <title>Icon-Craft.net</title>
 
@@ -52,7 +51,5 @@ print $ausgabe;
 	<td colspan='2' class='index_footer'><?php include 'includes/footer.php'; ?></td>
     <tr>
 </table>
-
-?>
 
 </body></html>

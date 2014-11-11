@@ -47,3 +47,4 @@ cache/*
 libraries/translations/*.php
 libraries/mysql_login.php
 sitemap.xml
+google*.html

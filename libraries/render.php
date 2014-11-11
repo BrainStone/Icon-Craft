@@ -1,6 +1,10 @@
 <?php
   require_once("mysql.php");
   
+  header('Expires: '.gmdate('D, d M Y H:i:s \G\M\T', time() + 604800));
+  header("Pragma: public");
+  header('Cache-Control: "public, must-revalidate, proxy-revalidate"');
+  
   $params = explode("/", strtolower($_SERVER["REQUEST_URI"]));
   array_shift($params);
   connect_mysqli();
@@ -45,6 +49,12 @@
         
         if(file_exists($cache_file)) {
           $im = imagecreatefrompng($cache_file);
+          touch($cache_file);
+          
+          $size = imagesx($im);
+        } elseif(file_exists("$cache_file.optimized")) {
+          $im = imagecreatefrompng("$cache_file.optimized");
+          touch("$cache_file.optimized");
           
           $size = imagesx($im);
         } else {

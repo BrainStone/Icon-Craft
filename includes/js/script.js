@@ -63,3 +63,14 @@ $('#cssmenu li.has-sub>a').on('click', function(){
 	}
 });
 } )( jQuery );
+
+// Pingdom
+var _prum = [['id', '54612d9cabe53d0576ff1a8d'],
+             ['mark', 'firstbyte', (new Date()).getTime()]];
+(function() {
+    var s = document.getElementsByTagName('script')[0]
+      , p = document.createElement('script');
+    p.async = 'async';
+    p.src = '//rum-static.pingdom.net/prum.min.js';
+    s.parentNode.insertBefore(p, s);
+})();
