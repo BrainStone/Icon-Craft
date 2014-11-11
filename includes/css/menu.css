@@ -3,7 +3,7 @@
 	padding: 0;
 	clear:both;
 	width:1200px;
-	height:48px;
+	height:47px;
 	background: #d6eaf8 url(images/dropdown-bg.gif) repeat-x left top;
 }
 
@@ -39,7 +39,7 @@ ul.nav-main li:hover {
 ul.nav-main li {
 	float:left;
 	display:block;
-	height: 49px;
+	height: 47px;
 	color: #999;
 	font: 14px Arial, Helvetica, sans-serif;
 	background: url(images/separator.gif) no-repeat right center;
