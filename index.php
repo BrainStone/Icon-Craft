@@ -16,7 +16,9 @@ require_once("libraries/minimize.php");
 <!DOCTYPE HTML>
 <html lang="<?php echo $_SESSION["language"]; ?>">
 <head>
-
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="stylesheet" type="text/css" href="/includes/css/style.css">
 <link rel="stylesheet" type="text/css" href="/includes/css/menu.css">
 <?php
