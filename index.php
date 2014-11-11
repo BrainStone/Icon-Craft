@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_REQUEST["type"])) $type = $_REQUEST["type"];
+$type = isset($_REQUEST["type"])? $_REQUEST["type"] : "";
 
 if ($type == "all") normal();
 
@@ -36,7 +36,7 @@ if ($type == "all") normal();
 
 function normal() {
 
-$ausgabe .= "Hier ist die ausgabe";
+$ausgabe = "Hier ist die ausgabe";
 $ausgabe .= "hmmm";
 
 print $ausgabe;
