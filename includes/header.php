@@ -1,5 +1,5 @@
 <?php
-echo "<table class=\"index_header\">
+echo "<table class=\"header_table\">
 	<tr>
 		<td class=\"header_left\">&nbsp;</td>
 		<td class=\"header_center\">" . translate("header.slogan") . "</td>
