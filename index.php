@@ -8,9 +8,9 @@ require_once("libraries/cache.php");
 // Make HTML as small as possible!
 require_once("libraries/minimize.php");
 
-$type = isset($_REQUEST["type"])? $_REQUEST["type"] : "";
+//$type = isset($_REQUEST["type"])? $_REQUEST["type"] : "";
 
-if ($type == "all") normal();
+//if ($type == "all") normal();
 
 ?>
 <!DOCTYPE HTML>
@@ -30,9 +30,6 @@ if ($type == "all") normal();
 
 </head>
 <body>
-<?php
-  print_language_selector();
-?>
 <br />
 
 <table border='0' align='center' class='index_table'>
@@ -43,21 +40,7 @@ if ($type == "all") normal();
 	<td colspan='2' class='index_menu'><?php include 'includes/menu.php'; ?></td>
     </tr>
     <tr>
-    	<td class='index_site_left'>1
-
-<?php
-
-function normal() {
-
-$ausgabe = "Hier ist die ausgabe";
-$ausgabe .= "hmmm";
-
-print $ausgabe;
-
-}
-
-?>
-	</td>
+    	<td class='index_site_left'>1</td>
 	<td class='index_site_right'>3</td>
     </tr>
     <tr>
