@@ -1,5 +1,6 @@
 <?php
   require_once("mysql_login.php");
+  require_once("passwords.php");
   
   $mysqli = null;
   
@@ -7,7 +8,7 @@
     global $mysqli;
     
     if($mysqli == null) {
-      $mysqli = create_mysql_object();
+      $mysqli = return new mysqli($passwords->mysqli->host, $passwords->mysqli->database, $passwords->mysqli->password, $passwords->mysqli->table);
       
       if ($mysqli->connect_errno) {
         die("Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);

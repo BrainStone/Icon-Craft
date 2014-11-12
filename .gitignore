@@ -45,7 +45,7 @@ Temporary Items
 
 cache/*
 libraries/translations/*.php
-libraries/mysql_login.php
+libraries/passwords.php
 sitemap.xml
 google*.html
 mu-*-*-*-*.txt
