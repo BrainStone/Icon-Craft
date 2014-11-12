@@ -27,7 +27,7 @@
     $last_month = send_request("summary.average/$passwords->pingdome->checkid?includeuptime=true&from=" . (time() - 2592000));
     
     $uptime = array("all_time"   => $all_time->status->totalup   / ($all_time->status->totalup   + $all_time->status->totaldown  ),
-                    "last_month" => $last_month->status->totalup / ($last_month->status->totalup + $last_month->status->totaldown))
+                    "last_month" => $last_month->status->totalup / ($last_month->status->totalup + $last_month->status->totaldown));
                     
     file_put_contents($cache_file, "<?php\n  \$last_check = " . var_export($time(), true) . ";\n\n  \$uptime = " . var_export($uptime, true) . ";\n?" . ">");
   }
