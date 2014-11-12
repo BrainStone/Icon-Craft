@@ -1,5 +1,6 @@
 <?php
   require_once("libraries/uptime.php");
+  require_once("libraries/language.php");
   
   function percentage($percentage) {
     $percentage_circle = ($percentage >= 0) ? round($percentage, 0) : 0;
@@ -11,8 +12,8 @@
 ?>
 <table border="0">
   <tr>
-    <td>Uptime total</td>
-    <td>Uptime last 30 days</td>
+    <td><?php echo translate("body.uptime.all_time"); ?></td>
+    <td><?php echo translate("body.uptime.last_month"); ?></td>
   </tr>
   <tr>
     <td><?php percentage($uptime["all_time"]   * 100); ?></td>
