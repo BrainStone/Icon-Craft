@@ -1,5 +1,4 @@
 <?php
-  require_once("mysql_login.php");
   require_once("passwords.php");
   
   $mysqli = null;
