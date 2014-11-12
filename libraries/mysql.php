@@ -4,7 +4,7 @@
   $mysqli = null;
   
   function connect_mysqli() {
-    global $mysqli;
+    global $mysqli, $passwords;
     
     if($mysqli == null) {
       $mysqli = new mysqli($passwords->mysqli->host, $passwords->mysqli->database, $passwords->mysqli->password, $passwords->mysqli->table);
