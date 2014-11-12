@@ -16,6 +16,6 @@
   </tr>
   <tr>
     <td><?php percentage($uptime["all_time"]   * 100); ?></td>
-    <td><?php percentage($uptime["last_month"] * 100); ?><</td>
+    <td><?php percentage($uptime["last_month"] * 100); ?></td>
   </tr>
 </table>

@@ -13,7 +13,7 @@
     
     $response = json_decode(curl_exec($curl));
     
-    if(isset($response->error) || !isset($response->status->totalup) || !isset($response->status->totaldown)) {
+    if(isset($response->error) || !isset($response->summary->status) || !isset($response->summary->status->totalup) || !isset($response->summary->status->totaldown)) {
       $response = json_decode("{\"summary\":{\"status\":{\"totalup\":-1,\"totaldown\":2}}}");
     }
     
@@ -26,10 +26,10 @@
     $all_time = send_request("summary.average/"   . $passwords->pingdom->checkid . "?includeuptime=true&");
     $last_month = send_request("summary.average/" . $passwords->pingdom->checkid . "?includeuptime=true&from=" . (time() - 2592000));
     
-    $uptime = array("all_time"   => $all_time->status->totalup   / ($all_time->status->totalup   + $all_time->status->totaldown  ),
-                    "last_month" => $last_month->status->totalup / ($last_month->status->totalup + $last_month->status->totaldown));
+    $uptime = array("all_time"   => $all_time->summary->status->totalup   / ($all_time->summary->status->totalup   + $all_time->summary->status->totaldown  ),
+                    "last_month" => $last_month->summary->status->totalup / ($last_month->summary->status->totalup + $last_month->summary->status->totaldown));
                     
-    file_put_contents($cache_file, "<?php\n  \$last_check = " . var_export($time(), true) . ";\n\n  \$uptime = " . var_export($uptime, true) . ";\n?" . ">");
+    file_put_contents($cache_file, "<?php\n  \$last_check = " . var_export(time(), true) . ";\n\n  \$uptime = " . var_export($uptime, true) . ";\n?" . ">");
   }
   
   $uptime = array();
