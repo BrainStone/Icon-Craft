@@ -35,7 +35,7 @@
   $uptime = array();
   $cache_file = "../cache/php/uptime.php";
   
-  if(file_exits($cache_file)) {
+  if(file_exists($cache_file)) {
     require_once($cache_file);
     
     if((time() - $last_check) > 3600)
