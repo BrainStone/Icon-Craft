@@ -23,8 +23,8 @@
   function get_uptime() {
     global $passwords, $uptime, $cache_file;
     
-    $all_time = send_request("summary.average/$passwords->pingdom->checkid?includeuptime=true&");
-    $last_month = send_request("summary.average/$passwords->pingdom->checkid?includeuptime=true&from=" . (time() - 2592000));
+    $all_time = send_request("summary.average/"   . $passwords->pingdom->checkid . "?includeuptime=true&");
+    $last_month = send_request("summary.average/" . $passwords->pingdom->checkid . "?includeuptime=true&from=" . (time() - 2592000));
     
     $uptime = array("all_time"   => $all_time->status->totalup   / ($all_time->status->totalup   + $all_time->status->totaldown  ),
                     "last_month" => $last_month->status->totalup / ($last_month->status->totalup + $last_month->status->totaldown));
@@ -41,7 +41,7 @@
     if((time() - $last_check) > 3600)
       get_uptime();
   } else {
-    mkdir("../cache/php", 0777, true);
+    @mkdir("../cache/php", 0777, true);
     
     get_uptime();
   }
