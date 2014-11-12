@@ -7,8 +7,8 @@
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, "https://api.pingdom.com/api/2.0/$api_string");
     curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
-    curl_setopt($curl, CURLOPT_USERPWD, "$passwords->pingdom->email:$passwords->pingdom->password");
-    curl_setopt($curl, CURLOPT_HTTPHEADER, array("App-Key: $passwords->pingdom->appkey"));
+    curl_setopt($curl, CURLOPT_USERPWD, $passwords->pingdom->email . ":" . $passwords->pingdom->password);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array("App-Key: " . $passwords->pingdom->appkey"));
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     
     $response = json_decode(curl_exec($curl));
