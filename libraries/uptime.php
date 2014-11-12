@@ -13,7 +13,7 @@
     
     $response = json_decode(curl_exec($curl));
     
-    if(isset($response->error) || !isset($all_time->status->totalup) || !isset($all_time->status->totaldown)) {
+    if(isset($response->error) || !isset($response->status->totalup) || !isset($response->status->totaldown)) {
       $response = json_decode("{\"summary\":{\"status\":{\"totalup\":-1,\"totaldown\":2}}}");
     }
     
