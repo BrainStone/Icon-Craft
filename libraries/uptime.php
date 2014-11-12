@@ -33,7 +33,7 @@
   }
   
   $uptime = array();
-  $cache_file = "../cache/php/uptime.php";
+  $cache_file = "cache/php/uptime.php";
   
   if(file_exists($cache_file)) {
     require_once($cache_file);
@@ -41,7 +41,7 @@
     if((time() - $last_check) > 3600)
       get_uptime();
   } else {
-    @mkdir("../cache/php", 0777, true);
+    @mkdir("cache/php", 0777, true);
     
     get_uptime();
   }
