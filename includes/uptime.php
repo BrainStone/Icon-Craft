@@ -1,5 +1,5 @@
 <?php
-  require_once("../libraries/uptime.php");
+  require_once("libraries/uptime.php");
   
   function percentage($percentage) {
     $percentage_circle = ($percentage >= 0) ? round($percentage, 0) : 0;
