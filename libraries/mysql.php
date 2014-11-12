@@ -8,7 +8,7 @@
     global $mysqli;
     
     if($mysqli == null) {
-      $mysqli = return new mysqli($passwords->mysqli->host, $passwords->mysqli->database, $passwords->mysqli->password, $passwords->mysqli->table);
+      $mysqli = new mysqli($passwords->mysqli->host, $passwords->mysqli->database, $passwords->mysqli->password, $passwords->mysqli->table);
       
       if ($mysqli->connect_errno) {
         die("Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
