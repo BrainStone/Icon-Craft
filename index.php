@@ -21,6 +21,7 @@ require_once("libraries/minimize.php");
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="stylesheet" type="text/css" href="/includes/css/style.css">
 <link rel="stylesheet" type="text/css" href="/includes/css/menu.css">
+<link rel="stylesheet" type="text/css" href="/includes/css/circle.css">
 <?php
   print_hreflang();
 ?>
@@ -42,7 +43,7 @@ require_once("libraries/minimize.php");
 	<td colspan='2' class='index_menu'><?php include 'includes/menu.php'; ?></td>
     </tr>
     <tr>
-    	<td class='index_site_left'>1</td>
+    	<td class='index_site_left'><?php include 'includes/uptime.php'; ?></td>
 	<td class='index_site_right'>3</td>
     </tr>
     <tr>
