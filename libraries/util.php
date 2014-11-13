@@ -71,22 +71,22 @@
     if($value >= $keys[$size - 1])
       return $values[$size - 1];
       
-      $top = 1;
-      
-      while(($value < $keys[$top]) && ($top < $size)) {
-        $top++;
-      }
-      
-      $percentage = ($value - $keys[$top - 1]) / ($keys[$top] - $keys[$top - 1]);
-      $color_low = color_to_array($values[$top - 1]);
-      $color_high = color_to_array($values[$top]);
-      $out = array(3);
-      
-      for($i = 0; $i < 3; $i++) {
-        $out[$i] = $values[$top - 1] + ($percentage * ($values[$top] - $values[$top - 1]));
-      }
-      
-      return array_to_color($out);
+    $top = 1;
+    
+    while(($value < $keys[$top]) && ($top < $size)) {
+      $top++;
+    }
+    
+    $percentage = ($value - $keys[$top - 1]) / ($keys[$top] - $keys[$top - 1]);
+    $color_low = color_to_array($values[$top - 1]);
+    $color_high = color_to_array($values[$top]);
+    $out = array(3);
+    
+    for($i = 0; $i < 3; $i++) {
+      $out[$i] = $values[$top - 1] + ($percentage * ($values[$top] - $values[$top - 1]));
+    }
+    
+    return array_to_color($out);
   }
   
   function color_to_array($color) {
