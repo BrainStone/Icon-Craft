@@ -32,7 +32,7 @@
   left: 50%;
   top: 50%;
   box-shadow: inset 0 0 1em black;
-  content: attr(data-pct)" %";
+  content: attr(data-pct);
   margin-top: -40px;
   margin-left: -40px;
   border-radius: 100%;

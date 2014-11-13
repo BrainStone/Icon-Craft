@@ -4,7 +4,7 @@
   
   function percentage($percentage) {
     $percentage_circle = (($percentage >= 0) ? (100 - round($percentage, 4)) : 1) * 180 * M_PI;
-    $percentage_display = ($percentage >= 0) ? round($percentage * 100, 2) . "%" : "n/a";
+    $percentage_display = ($percentage >= 0) ? round($percentage * 100, 2) . " %" : "n/a";
     $color = ($percentage >= 0.95)? "green" : "orange";
     
     echo "<div class=\"percent\" data-pct=\"$percentage_display\"><svg viewPort=\"0 0 100 100\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">
