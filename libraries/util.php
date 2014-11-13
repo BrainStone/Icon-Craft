@@ -59,6 +59,44 @@
 <?php
   }
   
+  function get_color_from_gradient($value, $gradient) {
+    ksort($gradient, SORT_NUMERIC);
+  
+    $keys = array_keys($gradient);
+    $values = array_values($gradient);
+    $size = sizeof($gradient);
+    
+    if($value <= $keys[0])
+      return $values[0];
+    if($value >= $keys[$size])
+      return $values[$size];
+      
+      $top = 1;
+      
+      while(($value < $keys[$top]) && ($top < $size)) {
+        $top++;
+      }
+      
+      $percentage = ($value - $keys[$top - 1]) / ($keys[$top] - $keys[$top - 1]);
+      $color_low = color_to_array($values[$top - 1]);
+      $color_high = color_to_array($values[$top]);
+      $out = array(3);
+      
+      for($i = 0; $i < 3; $i++) {
+        $out[$i] = $values[$top - 1] + ($percentage * ($values[$top] - $values[$top - 1]));
+      }
+      
+      return array_to_color($out);
+  }
+  
+  function color_to_array($color) {
+    return array(($color >> 16) & 255, ($color >> 8) & 255, $color & 255);
+  }
+  
+  function array_to_color($array) {
+    return ($array[0] << 16) | ($array[1] << 8) || $array[2];
+  }
+  
   if(!function_exists('getallheaders')) {
     function getallheaders() {
       $headers = '';
