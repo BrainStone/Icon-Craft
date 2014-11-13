@@ -68,8 +68,8 @@
     
     if($value <= $keys[0])
       return $values[0];
-    if($value >= $keys[$size])
-      return $values[$size];
+    if($value >= $keys[$size - 1])
+      return $values[$size - 1];
       
       $top = 1;
       
