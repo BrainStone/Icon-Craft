@@ -73,7 +73,7 @@
       
     $top = 1;
     
-    while(($value < $keys[$top]) && ($top < $size)) {
+    while(($keys[$top] < $value) && ($top < $size)) {
       $top++;
     }
     
@@ -83,7 +83,7 @@
     $out = array(3);
     
     for($i = 0; $i < 3; $i++) {
-      $out[$i] = $values[$top - 1] + ($percentage * ($values[$top] - $values[$top - 1]));
+      $out[$i] = (int)($color_low[$i] + ($percentage * ($color_high[$i] - $color_low[$i])));
     }
     
     return array_to_color($out);
@@ -94,7 +94,7 @@
   }
   
   function array_to_color($array) {
-    return ($array[0] << 16) | ($array[1] << 8) || $array[2];
+    return ($array[0] << 16) | ($array[1] << 8) | $array[2];
   }
   
   if(!function_exists('getallheaders')) {
