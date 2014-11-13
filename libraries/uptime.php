@@ -23,7 +23,7 @@
   function get_uptime() {
     global $passwords, $uptime, $cache_file;
     
-    $all_time = send_request("summary.average/"   . $passwords->pingdom->checkid . "?includeuptime=true&");
+    $all_time = send_request("summary.average/"   . $passwords->pingdom->checkid . "?includeuptime=true");
     $last_month = send_request("summary.average/" . $passwords->pingdom->checkid . "?includeuptime=true&from=" . (time() - 2592000));
     
     $uptime = array("all_time"   => $all_time->summary->status->totalup   / ($all_time->summary->status->totalup   + $all_time->summary->status->totaldown  ),
