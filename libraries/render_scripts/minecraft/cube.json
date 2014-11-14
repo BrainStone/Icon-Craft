@@ -1,0 +1,37 @@
+{
+  "camera": {
+    "yaw": 0,
+    "pitch": 0,
+    "roll": 0,
+    "viewport": [[8, 8], [-8, -8]]
+  },
+  "faces": [
+    {
+      "texture_transformation": [[8, 8, 8], [-8, 8, 8], [8, -8, 8]],
+      "texture_id": 0,
+      "mask": {
+        "type": "none",
+        "data": []
+      } 
+    },
+    {
+      "texture_transformation": [[8, 8, 8], [8, -8, 8], [8, 8, -8]],
+      "texture_id": 1,
+      "image_light": 84,
+      "mask": {
+        "type": "none",
+        "data": []
+      } 
+    },
+    {
+      "texture_transformation": [[8, -8, 8], [-8, -8, 8], [8, -8, -8]],
+      "texture_id": 2,
+      "image_light": 42,
+      "mask": {
+        "type": "none",
+        "data": []
+      } 
+    }
+  ],
+  "cache": "blocks"
+}

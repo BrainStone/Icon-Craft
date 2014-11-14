@@ -1,0 +1,19 @@
+{
+  "camera": {
+    "yaw": 0,
+    "pitch": 0,
+    "roll": 0,
+    "viewport": [[8, 8], [-8, -8]]
+  },
+  "faces": [
+    {
+      "texture_transformation": [[8, 8, 0], [-8, 8, 0], [8, -8, 0]],
+      "texture_id": 0,
+      "mask": {
+        "type": "none",
+        "data": []
+      } 
+    }
+  ],
+  "cache": 0
+}
