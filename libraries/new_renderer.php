@@ -170,7 +170,7 @@
 
     private function apply_mask($mask_data, &$image) {
       switch($mask_data->type) {
-        "none":
+        case "none":
           break;
         // TODO more mask types
       }
