@@ -1,9 +1,9 @@
 {
   "camera": {
     "pitch": 45,
-    "yaw": 45,
+    "yaw": 35.264,
     "roll": 0,
-    "viewport": [[8, 8], [-8, -8]]
+    "viewport": [[16, 16], [-16, -16]]
   },
   "faces": [
     {

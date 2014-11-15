@@ -77,7 +77,7 @@
       $image = imagecreatetruecolor(self::size, self::size);
     
       // transparent background
-      imagealphablending($image, false);
+      imagealphablending($image, true);
       imagesavealpha($image, true);
       $trans = imagecolorallocatealpha($image, 0, 0, 0, 127);
       imagefill($image, 0, 0, $trans);
