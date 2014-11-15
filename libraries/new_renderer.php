@@ -20,13 +20,13 @@
         $this->translate_face($face);
 
         $face_image = self::create_transparent_image();
-        self::imagetranslatedtexture($face_image, $face->texture_transformation,
-          $this->load_png($this->textures[$face->texture_id]));
+        $texture = $this->load_png($this->textures[$face->texture_id]);
 
         if(isset($face->image_light)) {
-          $face_image = self::imagelight($face_image, $face->image_light);
+          $texture = self::imagelight($texture, $face->image_light);
         }
 
+        self::imagetranslatedtexture($face_image, $face->texture_transformation, $texture);
         $this->apply_mask($face->mask, $face_image);
 
 
@@ -70,7 +70,7 @@
     }
 
     private function map($coord, $old_min, $old_max, $new_min, $new_max) {
-      return ((($coord - $old_min) / ($old_max - $old_min)) * ($new_max - $new_min)) + $new_min
+      return ((($coord - $old_min) / ($old_max - $old_min)) * ($new_max - $new_min)) + $new_min;
     }
 
     private function create_transparent_image() {
