@@ -51,6 +51,10 @@
     private function translate_coordinates(&$coordinates) {
       $camera= $this->render_data->camera;
 
+      $camera->yaw = deg2rad($camera->yaw);
+      $camera->pitch = deg2rad($camera->pitch);
+      $camera->roll = deg2rad($camera->roll);
+
       /*self::rotate($coordinates[0], $coordinates[1], $camera->roll);
       self::rotate($coordinates[0], $coordinates[2], $camera->yaw);
       self::rotate($coordinates[1], $coordinates[2], $camera->pitch);*/
