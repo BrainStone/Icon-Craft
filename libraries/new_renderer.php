@@ -8,7 +8,7 @@
     private $texture_cache;
     
     public function __construct($render_data, $textures) {
-      $this->render_data = json_decode($render_data);
+      $this->render_data = $render_data;
       $this->textures = $textures;
       $this->texture_cache = array();
     }
@@ -48,7 +48,19 @@
     }
 
     private function translate_coordinates(&$coordinates) {
-      // TODO
+      self::rotate($coordinates[1], $coordinates[2], $this->render_data->camera->pitch);
+      self::rotate($coordinates[0], $coordinates[2], $this->render_data->camera->yaw);
+      self::rotate($coordinates[0], $coordinates[1], $this->render_data->camera->roll);
+    }
+
+    private function rotate(&$x, &$y, $angle) {
+      if($angle != 0) {
+        $r = sqrt($x*$x + $y*$y);
+        $angle = deg2rad($angle) + atan2($y, $x);
+
+        $x = $r * cos($angle);
+        $y = $r * sin($angle);
+      }
     }
 
     private function create_transparent_image() {

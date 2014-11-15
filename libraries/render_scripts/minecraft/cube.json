@@ -1,7 +1,7 @@
 {
   "camera": {
-    "yaw": 0,
-    "pitch": 0,
+    "pitch": 45,
+    "yaw": 45,
     "roll": 0,
     "viewport": [[8, 8], [-8, -8]]
   },

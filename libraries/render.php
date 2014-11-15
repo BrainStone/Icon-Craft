@@ -42,7 +42,7 @@
       
       if($row["Meta"] != "*") $item .= "_" . $row["Meta"];
       
-      switch($row["RenderAs"]) {
+      /*switch($row["RenderAs"]) {
       case "Block":
         $cache_path = "../cache/render/$modid/blocks";
         $cache_file = "$cache_path/$item.png";
@@ -62,6 +62,21 @@
           
           list($left, $top, $right) = explode(",", $row["Textures"]);        
           $im = render_block($left, $top, $right);
+          
+          @mkdir($cache_path, 0775, true);
+          imagepng($im, $cache_file);
+        }*/
+
+        require_once("new_renderer.php");
+
+        $render_file = "render_scripts/" . $row["RenderFile"];
+        $render_data = json_decode(file_get_contents($render_file));
+
+        $renderer = new Renderer($render_data, explode(",", $row["Textures"]));
+
+        if($render_data->cache != 0) {
+          $cache_path = "../cache/render/$modid/" . $render_data->cache;
+          $cache_file = "$cache_path/$item.png";
           
           @mkdir($cache_path, 0775, true);
           imagepng($im, $cache_file);
