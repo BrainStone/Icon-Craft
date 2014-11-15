@@ -51,9 +51,9 @@
     private function translate_coordinates(&$coordinates) {
       $camera= $this->render_data->camera;
 
-      self::rotate($coordinates[1], $coordinates[2], $camera->pitch);
-      self::rotate($coordinates[0], $coordinates[2], $camera->yaw);
       self::rotate($coordinates[0], $coordinates[1], $camera->roll);
+      self::rotate($coordinates[0], $coordinates[2], $camera->yaw);
+      self::rotate($coordinates[1], $coordinates[2], $camera->pitch);
 
       $coordinates[0] = self::map($coordinates[0], $camera->viewport[1][0], $camera->viewport[0][0], 0, self::size);
       $coordinates[1] = self::map($coordinates[1], $camera->viewport[1][1], $camera->viewport[0][1], self::size, 0);
