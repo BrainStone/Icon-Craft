@@ -23,7 +23,7 @@
           $this->load_png($this->textures[$face->texture_id]));
 
         if(isset($face->image_light)) {
-          $face_image = self::image_light($face_image, $face->image_light);
+          $face_image = self::imagelight($face_image, $face->image_light);
         }
 
         $this->apply_mask($face->mask, $face_image);
