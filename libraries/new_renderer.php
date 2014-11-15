@@ -49,9 +49,14 @@
     }
 
     private function translate_coordinates(&$coordinates) {
-      self::rotate($coordinates[1], $coordinates[2], $this->render_data->camera->pitch);
-      self::rotate($coordinates[0], $coordinates[2], $this->render_data->camera->yaw);
-      self::rotate($coordinates[0], $coordinates[1], $this->render_data->camera->roll);
+      $camera= $this->render_data->camera;
+
+      self::rotate($coordinates[1], $coordinates[2], $camera->pitch);
+      self::rotate($coordinates[0], $coordinates[2], $camera->yaw);
+      self::rotate($coordinates[0], $coordinates[1], $camera->roll);
+
+      $coordinates[0] = self::map($coordinates[0], $camera->viewport[1][0], $camera->viewport[0][0], 0, self::size);
+      $coordinates[1] = self::map($coordinates[1], $camera->viewport[1][1], $camera->viewport[0][1], self::size, 0);
     }
 
     private function rotate(&$x, &$y, $angle) {
@@ -62,6 +67,10 @@
         $x = $r * cos($angle);
         $y = $r * sin($angle);
       }
+    }
+
+    private function map($coord, $old_min, $old_max, $new_min, $new_max) {
+      return ((($coord - $old_min) / ($old_max - $old_min)) * ($new_max - $new_min)) + $new_min
     }
 
     private function create_transparent_image() {
