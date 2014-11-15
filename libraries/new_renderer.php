@@ -62,7 +62,7 @@
     private function rotate(&$x, &$y, $angle) {
       if($angle != 0) {
         $r = sqrt($x*$x + $y*$y);
-        $angle = deg2rad($angle) + atan2($y, $x);
+        $angle = deg2rad($angle) - atan2($y, $x);
 
         $x = $r * cos($angle);
         $y = $r * sin($angle);
