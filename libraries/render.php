@@ -78,7 +78,7 @@
 
       require_once("new_renderer.php");
 
-      $render_file = "render_scripts/$modid" . $row["RenderFile"];
+      $render_file = "render_scripts/$modid/" . $row["RenderFile"];
       $render_data = json_decode(file_get_contents($render_file));
 
       $renderer = new Renderer($render_data, explode(",", $row["Textures"]));
