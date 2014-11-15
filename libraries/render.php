@@ -82,6 +82,8 @@
       $render_data = json_decode(file_get_contents($render_file));
 
       $renderer = new Renderer($render_data, explode(",", $row["Textures"]));
+      $im = $renderer->render();
+      $size = imagesx($im);
 
       if($render_data->cache != 0) {
         $cache_path = "../cache/render/$modid/" . $render_data->cache;
