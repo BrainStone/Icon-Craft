@@ -19,7 +19,8 @@
       foreach ($this->render_data->faces as $face) {
         $this->translate_face($face);
 
-        $face_image = self::imagetranslatedtexture(self::create_transparent_image(), $face->texture_transformation,
+        $face_image = self::create_transparent_image();
+        self::imagetranslatedtexture($face_image, $face->texture_transformation,
           $this->load_png($this->textures[$face->texture_id]));
 
         if(isset($face->image_light)) {
