@@ -55,9 +55,9 @@
       self::rotate($coordinates[0], $coordinates[2], $camera->yaw);
       self::rotate($coordinates[1], $coordinates[2], $camera->pitch);*/
 
-      $coordinates[0] = cos($camera->yaw)*cos($camera->pitch)*$coordinates[0] + sin($camera->yaw)*cos($camera->pitch)*$coordinates[1] - sin($camera->pitch)*$coordinates[2];
-      $coordinates[1] = (cos($camera->yaw)*sin($camera->pitch)*sin($camera->roll)-sin($camera->yaw)*cos($camera->roll))*$coordinates[0] + (sin($camera->yaw)*sin($camera->pitch)*sin($camera->roll)+cos($camera->yaw)*cos($camera->roll))*$coordinates[1] + cos($camera->pitch)*sin($camera->roll)*$coordinates[2];
-      $coordinates[2] = (cos($camera->yaw)*sin($camera->pitch)*cos($camera->roll)+sin($camera->yaw)*sin($camera->roll))*$coordinates[0] + (sin($camera->yaw)*sin($camera->pitch)*cos($camera->roll)-cos($camera->yaw)*sin($camera->roll))*$coordinates[1] + cos($camera->pitch)*cos($camera->roll)*$coordinates[2];
+      $coordinates[0] = (sin($camera->yaw)*sin($camera->pitch)*sin($camera->roll)+cos($camera->yaw)*cos($camera->roll))*$coordinates[0] + cos($camera->pitch)*sin($camera->roll)*$coordinates[1] + (cos($camera->yaw)*sin($camera->pitch)*sin($camera->roll)-sin($camera->yaw)*cos($camera->roll))*$coordinates[2];
+      $coordinates[1] = (sin($camera->yaw)*sin($camera->pitch)*cos($camera->roll)-cos($camera->yaw)*sin($camera->roll))*$coordinates[0] + cos($camera->pitch)*cos($camera->roll)*$coordinates[1] + (cos($camera->yaw)*sin($camera->pitch)*cos($camera->roll)+sin($camera->yaw)*sin($camera->roll))*$coordinates[2];
+      $coordinates[2] = sin($camera->yaw)*cos($camera->pitch)*$coordinates[0] - sin($camera->pitch)*$coordinates[1] + cos($camera->yaw)*cos($camera->pitch)*$coordinates[2];
 
       $coordinates[0] = self::map($coordinates[0], $camera->viewport[1][0], $camera->viewport[0][0], 0, self::size);
       $coordinates[1] = self::map($coordinates[1], $camera->viewport[1][1], $camera->viewport[0][1], self::size, 0);
