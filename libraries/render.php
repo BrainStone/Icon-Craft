@@ -34,6 +34,24 @@
     imagepng($im, $cache_file);
   }
 
+  function crafting_common($cache_name, $texture, $images, $position) {
+    global $im;
+
+    $im = image_from_cache("minecraft", "crafting", $cache_name);
+
+    if($im === null) {
+      $images = array();
+
+      foreach ($params as $image) {
+        $images[] = block(array($image));
+      }
+
+      $im = render_crafting($texture, $images, $positions);
+
+      cache_image("minecraft", "crafting", $cache_name, $im);
+    }
+  }
+
   function crafting($params) {
     global $im, $final_size_x, $final_size_y;
     require_once("renderers/crafting_renderer.php");
@@ -67,19 +85,33 @@
       return;
     }
 
-    $im = image_from_cache("minecraft", "crafting", implode("_", $params));
+    crafting_common(implode("_", $params), "../images/minecraft/crafting/crafting${field_size}x${field_size}.png", $images, $positions)
+  }
 
-    if($im === null) {
-      $images = array();
+  function furnace($params) {
+    global $im, $final_size_x, $final_size_y;
+    require_once("renderers/crafting_renderer.php");
 
-      foreach ($params as $image) {
-        $images[] = block(array($image));
-      }
+    array_shift($params);
+    $arguments = sizeof($params);
 
-      $im = render_crafting("../images/minecraft/crafting/crafting${field_size}x${field_size}.png", $images, $positions);
+    if(($arguments == 3) || ($arguments == 4)) {
+      $size_factor = (isset($params[3]) && is_numeric($params[3])) ? min(512, max(16, intval($params[3]))) / 16 : 2;
+      $positions = array(array(16, 7), array(16, 43), array(76, 25));
 
-      cache_image("minecraft", "crafting", implode("_", $params), $im);
+      $final_size_x = 83 * $size_factor;
+      $final_size_y = 53 * $size_factor;
+
+      if(isset($params[5])) unset($params[5]);
+    } else {
+      require_once("renderers/block_renderer.php");
+      
+      $im = render_block("", "", "");
+
+      return;
     }
+
+    crafting_common(implode("_", $params), "../images/minecraft/crafting/furnace.png", $images, $positions)
   }
 
   function block($params) {
