@@ -99,10 +99,10 @@
       $size_factor = (isset($params[3]) && is_numeric($params[3])) ? min(512, max(16, intval($params[3]))) / 16 : 2;
       $positions = array(array(16, 7), array(16, 43), array(76, 25));
 
-      $final_size_x = 83 * $size_factor;
-      $final_size_y = 53 * $size_factor;
+      $final_size_x = 112 * $size_factor;
+      $final_size_y = 66 * $size_factor;
 
-      if(isset($params[5])) unset($params[5]);
+      if(isset($params[3])) unset($params[3]);
     } else {
       require_once("renderers/block_renderer.php");
       
