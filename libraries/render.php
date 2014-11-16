@@ -42,7 +42,7 @@
     $arguments = sizeof($params);
 
     if(($arguments == 5) || ($arguments == 6)) {
-      $size_factor = (isset($params[5]) && is_numeric($params[5])) ? min(512, max(16, intval($params[1]))) / 16 : 2;
+      $size_factor = (isset($params[5]) && is_numeric($params[5])) ? min(512, max(16, intval($params[5]))) / 16 : 2;
       $positions = array(array(6, 14), array(24, 14), array(6, 32), array(24, 32), array(62, 24));
       $field_size = 2;
 
@@ -51,7 +51,7 @@
 
       if(isset($params[5])) unset($params[5]);
     } elseif (($arguments == 10) || ($arguments == 11)) {
-      $size_factor = (isset($params[10]) && is_numeric($params[10])) ? min(512, max(16, intval($params[1]))) / 16 : 2;
+      $size_factor = (isset($params[10]) && is_numeric($params[10])) ? min(512, max(16, intval($params[10]))) / 16 : 2;
       $positions = array(array(6, 15), array(24, 15), array(42, 15), array(6, 33), array(24, 33), array(42, 33), array(6, 51), array(24, 51), array(42, 51), array(100, 33));
       $field_size = 3;
 
