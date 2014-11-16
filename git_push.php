@@ -1,7 +1,10 @@
 <?php
   require_once("libraries/passwords.php");
+  require_once("libraries/util.php");
   
   header("Content-type: text/html;charset=utf-8");
+
+  $headers = getallheaders();
   
   if($headers["User-Agent"] == "GitHub-Hookshot/" . $passwords->github->hookshot) {
     $request_body = file_get_contents('php://input');
