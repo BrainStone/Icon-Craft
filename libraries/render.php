@@ -4,7 +4,7 @@
   function image_from_cache($modid, $type, $item) {
     global $size, $im;
 
-    $cache_path = "../cache/render/$modid/blocks";
+    $cache_path = "../cache/render/$modid/$type";
     $cache_file = "$cache_path/$item.png";
     
     if(file_exists($cache_file)) {
@@ -23,7 +23,7 @@
   function cache_image($modid, $type, $item) {
     global $size, $im;
 
-    $cache_path = "../cache/render/$modid/blocks";
+    $cache_path = "../cache/render/$modid/$type";
     $cache_file = "$cache_path/$item.png";
     
     @mkdir($cache_path, 0775, true);
@@ -69,7 +69,7 @@
       $images = array();
 
       foreach ($params as $image) {
-        $images[] = blocks(array($image));
+        $images[] = block(array($image));
       }
 
       $im = render_crafting("../images/minecraft/crafting/crafting${field_size}x${field_size}.png", $images, $positions);
@@ -79,7 +79,7 @@
   }
 
   function block($params) {
-    global $im, $final_size;
+    global $mysqli;
 
     $item = $params[0];
     
@@ -148,7 +148,7 @@
       $im = render_block("", "", "");
     }
 
-    $final_size = (isset($params[1]) && is_numeric($params[1])) ? min(4096, max(16, intval($params[1]))) : 512;
+    return $im;
   }
   
   header('Expires: '.gmdate('D, d M Y H:i:s \G\M\T', time() + 604800));
@@ -170,7 +170,9 @@
     // Custom item creation processes like custom furnaces from mods
     // TODO Special
   } else {
-    block($params);
+    $im = block($params);
+
+    $final_size = (isset($params[1]) && is_numeric($params[1])) ? min(4096, max(16, intval($params[1]))) : 512;
   }
 
   if($im === null) {
@@ -179,18 +181,18 @@
     $im = render_block("", "", "");
   }
 
-  if(!isset($final_size)) {
+  if(isset($final_size)) {
     $final_size_x = $final_size;
     $final_size_y = $final_size;
   }
 
-  if(!isset($size)) {
+  if(isset($size)) {
     $size_x = $size;
     $size_y = $size;
   }
   
   // Resizing
-  $image = imagecreatetruecolor($final_size, $final_size);
+  $image = imagecreatetruecolor($final_size_x, $final_size_y);
   imagealphablending($image, false);
   imagesavealpha($image, true);
   imagecopyresampled($image, $im, 0, 0, 0, 0, $final_size_x, $final_size_y, $size_x, $size_y);
