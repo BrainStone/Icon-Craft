@@ -44,9 +44,9 @@
     $trans = imagecolorallocatealpha($im, 0, 0, 0, 127);
     imagefill($im, 0, 0, $trans);
     
-    imagetranslatedtexture($im, $first_poligon, imagelight(load_png($left_side), 84));
+    imagetranslatedtexture($im, $first_poligon, imagelight(load_png($left_side), 96));
     imagetranslatedtexture($im, $second_poligon, load_png($top_side));
-    imagetranslatedtexture($im, $third_poligon, imagelight(load_png($right_side), 42));
+    imagetranslatedtexture($im, $third_poligon, imagelight(load_png($right_side), 64));
     
     return $im;
   }
