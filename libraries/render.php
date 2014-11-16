@@ -34,8 +34,12 @@
     imagepng($im, $cache_file);
   }
 
-  function crafting_common($cache_name, $texture, $params, $positions) {
-    global $im;
+  function crafting_common($cache_name, $texture, $params, $positions, $size_factor) {
+    global $im, $final_size_x, $final_size_y;
+
+    list($final_size_x, $final_size_y) = getimagesize($texture);
+    $final_size_x *= $size_factor;
+    $final_size_y *= $size_factor;
 
     $im = image_from_cache("minecraft", "crafting", $cache_name);
 
@@ -64,17 +68,11 @@
       $positions = array(array(6, 14), array(24, 14), array(6, 32), array(24, 32), array(62, 24));
       $field_size = 2;
 
-      $final_size_x = 83 * $size_factor;
-      $final_size_y = 53 * $size_factor;
-
       if(isset($params[5])) unset($params[5]);
     } elseif (($arguments == 10) || ($arguments == 11)) {
       $size_factor = (isset($params[10]) && is_numeric($params[10])) ? min(512, max(16, intval($params[10]))) / 16 : 2;
       $positions = array(array(6, 15), array(24, 15), array(42, 15), array(6, 33), array(24, 33), array(42, 33), array(6, 51), array(24, 51), array(42, 51), array(100, 33));
       $field_size = 3;
-
-      $final_size_x = 125 * $size_factor;
-      $final_size_y = 72 * $size_factor;
 
       if(isset($params[10])) unset($params[10]);
     } else {
@@ -85,7 +83,7 @@
       return;
     }
 
-    crafting_common(implode("_", $params), "../images/minecraft/crafting/crafting${field_size}x${field_size}.png", $params, $positions);
+    crafting_common(implode("_", $params), "../images/minecraft/crafting/crafting${field_size}x${field_size}.png", $params, $positions, $size_factor);
   }
 
   function smelting($params) {
@@ -99,9 +97,6 @@
       $size_factor = (isset($params[3]) && is_numeric($params[3])) ? min(512, max(16, intval($params[3]))) / 16 : 2;
       $positions = array(array(16, 7), array(16, 43), array(76, 25));
 
-      $final_size_x = 112 * $size_factor;
-      $final_size_y = 66 * $size_factor;
-
       if(isset($params[3])) unset($params[3]);
     } else {
       require_once("renderers/block_renderer.php");
@@ -111,7 +106,7 @@
       return;
     }
 
-    crafting_common(implode("_", $params), "../images/minecraft/crafting/furnace.png", $params, $positions);
+    crafting_common(implode("_", $params), "../images/minecraft/crafting/furnace.png", $params, $positions, $size_factor);
   }
 
   function block($params) {
