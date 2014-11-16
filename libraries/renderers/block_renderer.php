@@ -38,7 +38,7 @@
     $im = imagecreatetruecolor($size, $size);
     
     // Transparentbackground
-    imagealphablending($im, false);
+    imagealphablending($im, true);
     imagesavealpha($im, true);
     $trans = imagecolorallocatealpha($im, 0, 0, 0, 127);
     imagefill($im, 0, 0, $trans);

@@ -7,7 +7,7 @@
     global $size;
   
     $im = imagecreatetruecolor($size, $size);
-    imagealphablending($im, false);
+    imagealphablending($im, true);
     imagesavealpha($im, true);
     
     $texture = load_png($texture);
