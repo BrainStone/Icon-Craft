@@ -16,7 +16,7 @@
     $trans = imagecolorallocatealpha($texture, 0, 0, 0, 127);
     imagefill($texture, 0, 0, $trans);
 
-    imagecopyresampled($texture, imagecreatefrompng($texture_file), 0, 0, 0, 0, $size_x, $size_y, $size_x, $size_y);
+    imagecopyresampled($texture, imagecreatefrompng($texture_file), 0, 0, 0, 0, $size_x, $size_y, $size_x / 32, $size_y / 32);
 
     $size = sizeof($images);
 

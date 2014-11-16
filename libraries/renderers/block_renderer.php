@@ -5,6 +5,7 @@
   
   function render_block($left_side, $top_side, $right_side) {  
     global $size;
+    $size = 2048;
     
     $x1 = (2 - sqrt(3)) * 0.25 * $size;
     $x2 = 0.5 * $size;
@@ -42,9 +43,6 @@
     imagesavealpha($im, true);
     $trans = imagecolorallocatealpha($im, 0, 0, 0, 127);
     imagefill($im, 0, 0, $trans);
-    
-    $white = imagecolorallocate($im, 255, 255, 255);
-    $red = imagecolorallocate($im, 255, 0, 0);
     
     imagetranslatedtexture($im, $first_poligon, imagelight(load_png($left_side), 84));
     imagetranslatedtexture($im, $second_poligon, load_png($top_side));

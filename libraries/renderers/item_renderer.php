@@ -5,9 +5,10 @@
   
   function render_item($texture) {
     global $size;
+    $size = 2048;
   
     $im = imagecreatetruecolor($size, $size);
-    imagealphablending($im, true);
+    imagealphablending($im, false);
     imagesavealpha($im, true);
     
     $texture = load_png($texture);

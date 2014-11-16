@@ -2,7 +2,7 @@
   require_once("mysql.php");
 
   function image_from_cache($modid, $type, $item) {
-    global $size, $im;
+    global $size_x, $size_y;
 
     $cache_path = "../cache/render/$modid/$type";
     $cache_file = "$cache_path/$item.png";
@@ -11,18 +11,22 @@
       $im = imagecreatefrompng($cache_file);
       touch($cache_file);
       
-      $size = imagesx($im);
+      $size_x = imagesx($im);
+      $size_y = imagesy($im);
     } elseif(file_exists("$cache_file.optimized")) {
       $im = imagecreatefrompng("$cache_file.optimized");
       touch("$cache_file.optimized");
       
-      $size = imagesx($im);
+      $size_x = imagesx($im);
+      $size_y = imagesy($im);
+    } else {
+      $im = null;
     }
+
+    return $im;
   }
 
-  function cache_image($modid, $type, $item) {
-    global $size, $im;
-
+  function cache_image($modid, $type, $item, $im) {
     $cache_path = "../cache/render/$modid/$type";
     $cache_file = "$cache_path/$item.png";
     
@@ -48,7 +52,7 @@
       if(isset($params[5])) unset($params[5]);
     } elseif (($arguments == 10) || ($arguments == 11)) {
       $size_factor = (isset($params[10]) && is_numeric($params[10])) ? min(512, max(16, intval($params[1]))) / 16 : 2;
-      $positions = array(array(6, 15), array(24, 15), array(42, 15), array(6, 32), array(24, 32), array(42, 32), array(6, 51), array(24, 51), array(42, 51), array(100, 33));
+      $positions = array(array(6, 15), array(24, 15), array(42, 15), array(6, 33), array(24, 33), array(42, 33), array(6, 51), array(24, 51), array(42, 51), array(100, 33));
       $field_size = 3;
 
       $final_size_x = 125 * $size_factor;
@@ -63,7 +67,7 @@
       return;
     }
 
-    image_from_cache("minecraft", "crafting", implode("_", $params));
+    $im = image_from_cache("minecraft", "crafting", implode("_", $params));
 
     if($im === null) {
       $images = array();
@@ -74,7 +78,7 @@
 
       $im = render_crafting("../images/minecraft/crafting/crafting${field_size}x${field_size}.png", $images, $positions);
 
-      cache_image("minecraft", "crafting", implode("_", $params));
+      cache_image("minecraft", "crafting", implode("_", $params), $im);
     }
   }
 
@@ -82,6 +86,18 @@
     global $mysqli;
 
     $item = $params[0];
+
+    if($item == "") {
+      $im = imagecreatetruecolor(2048, 2048);
+    
+      // Transparentbackground
+      imagealphablending($im, true);
+      imagesavealpha($im, true);
+      $trans = imagecolorallocatealpha($im, 0, 0, 0, 127);
+      imagefill($im, 0, 0, $trans);
+
+      return $im;
+    }
     
     if(strpos($item, ":") === false) {
       $modid = "minecraft";
@@ -106,7 +122,7 @@
       
       switch($row["RenderAs"]) {
       case "Block":
-        image_from_cache($modid, "blocks", $item);
+        $im = image_from_cache($modid, "blocks", $item);
         
         if($im === null) {
           require_once("renderers/block_renderer.php");
@@ -114,7 +130,7 @@
           list($left, $top, $right) = explode(",", $row["Textures"]);        
           $im = render_block($left, $top, $right);
           
-          cache_image($modid, "blocks", $item);
+          cache_image($modid, "blocks", $item, $im);
         }
         
         break;
@@ -179,14 +195,16 @@
     require_once("renderers/block_renderer.php");
       
     $im = render_block("", "", "");
+
+    $final_size = 512;
   }
 
-  if(isset($final_size)) {
+  if((!isset($final_size_x) || !isset($final_size_y)) && isset($final_size)) {
     $final_size_x = $final_size;
     $final_size_y = $final_size;
   }
 
-  if(isset($size)) {
+  if((!isset($size_x) || !isset($size_y)) && isset($size)) {
     $size_x = $size;
     $size_y = $size;
   }
