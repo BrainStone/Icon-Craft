@@ -202,6 +202,9 @@
   $im = null;
   array_shift($params);
   connect_mysqli();
+  $number_of_params = sizeof($params);
+
+  $params[$number_of_params - 1] = preg_replace('/\.[^.]+$/', '', $params[$number_of_params - 1]);
   
   if($params[0] == "crafting") {
     crafting($params);
