@@ -85,10 +85,10 @@
       return;
     }
 
-    crafting_common(implode("_", $params), "../images/minecraft/crafting/crafting${field_size}x${field_size}.png", $images, $positions)
+    crafting_common(implode("_", $params), "../images/minecraft/crafting/crafting${field_size}x${field_size}.png", $images, $positions);
   }
 
-  function furnace($params) {
+  function smelting($params) {
     global $im, $final_size_x, $final_size_y;
     require_once("renderers/crafting_renderer.php");
 
@@ -111,7 +111,7 @@
       return;
     }
 
-    crafting_common(implode("_", $params), "../images/minecraft/crafting/furnace.png", $images, $positions)
+    crafting_common(implode("_", $params), "../images/minecraft/crafting/furnace.png", $images, $positions);
   }
 
   function block($params) {
@@ -211,7 +211,7 @@
   if($params[0] == "crafting") {
     crafting($params);
   } elseif($params[0] == "smelting") {
-    // TODO Smelting
+    smelting($params);
   } elseif($params[0] == "brewing") {
     // TODO Brewing
   } elseif($params[0] == "special") {
