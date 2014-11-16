@@ -34,7 +34,7 @@
     imagepng($im, $cache_file);
   }
 
-  function crafting_common($cache_name, $texture, $images, $position) {
+  function crafting_common($cache_name, $texture, $params, $positions) {
     global $im;
 
     $im = image_from_cache("minecraft", "crafting", $cache_name);
@@ -85,7 +85,7 @@
       return;
     }
 
-    crafting_common(implode("_", $params), "../images/minecraft/crafting/crafting${field_size}x${field_size}.png", $images, $positions);
+    crafting_common(implode("_", $params), "../images/minecraft/crafting/crafting${field_size}x${field_size}.png", $params, $positions);
   }
 
   function smelting($params) {
@@ -111,7 +111,7 @@
       return;
     }
 
-    crafting_common(implode("_", $params), "../images/minecraft/crafting/furnace.png", $images, $positions);
+    crafting_common(implode("_", $params), "../images/minecraft/crafting/furnace.png", $params, $positions);
   }
 
   function block($params) {
