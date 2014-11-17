@@ -209,23 +209,23 @@
     $available_extensions = imagetypes();
     $extension = strtolower($extension[1]);
 
-    if(($extension == "gif") && ($extension & IMG_GIF)) {
+    if(($extension == "gif") && ($available_extensions & IMG_GIF)) {
       header("Content-Type: image/gif");
       
       $create_image = "imagegif";
-    } elseif ((($extension == "jpg") || ($extension == "jpeg")) && ($extension & IMG_JPG)) {
+    } elseif ((($extension == "jpg") || ($extension == "jpeg")) && ($available_extensions & IMG_JPG)) {
       header("Content-Type: image/jpeg");
       
       $create_image = "imagejpeg";
-    } elseif (($extension == "png") && ($extension & IMG_PNG)) {
+    } elseif (($extension == "png") && ($available_extensions & IMG_PNG)) {
       header("Content-Type: image/png");
 
       $create_image = "imagepng";
-    } elseif (($extension == "wbmp") && ($extension & IMG_WBMP)) {
+    } elseif (($extension == "wbmp") && ($available_extensions & IMG_WBMP)) {
       header("Content-Type: image/vnd.wap.wbmp");
       
       $create_image = "imagewbmp";
-    } elseif (($extension == "xbm") && ($extension & IMG_XBM)) {
+    } elseif (($extension == "xbm") && ($available_extensions & IMG_XBM)) {
       header("Content-Type: image/xbm");
       
       $create_image = "imagexbm";
