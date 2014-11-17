@@ -225,7 +225,7 @@
       header("Content-Type: image/vnd.wap.wbmp");
       
       $create_image = "imagewbmp";
-    } elseif (($extension == "xbm") && ($available_extensions & IMG_XBM)) {
+    } elseif (($extension == "xbm") && ($available_extensions & IMG_XPM)) {
       header("Content-Type: image/xbm");
       
       $create_image = "imagexbm";
