@@ -17,7 +17,7 @@
     {
       "texture_transformation": [[8, 8, 8], [8, -8, 8], [8, 8, -8]],
       "texture_id": 1,
-      "image_light": 84,
+      "image_light": 96,
       "mask": {
         "type": "none",
         "data": []
@@ -26,7 +26,7 @@
     {
       "texture_transformation": [[8, -8, 8], [-8, -8, 8], [8, -8, -8]],
       "texture_id": 2,
-      "image_light": 42,
+      "image_light": 64,
       "mask": {
         "type": "none",
         "data": []

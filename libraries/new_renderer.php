@@ -53,7 +53,7 @@
 
       $yaw = deg2rad($camera->yaw);
       $pitch = deg2rad($camera->pitch);
-      $croll = deg2rad($camera->roll);
+      $roll = deg2rad($camera->roll);
 
       /*self::rotate($coordinates[0], $coordinates[1], $camera->roll);
       self::rotate($coordinates[0], $coordinates[2], $camera->yaw);
@@ -71,7 +71,7 @@
         sin($pitch)*$coordinates[2];
       unset($coordinates[2]);
 
-      $coordinates[0] = self::map($new_coordinates[0], $camera->viewport[1][0], $camera->viewport[0][0], 0, self::size);
+      $coordinates[0] = self::map($new_coordinates[0], $camera->viewport[1][0], $camera->viewport[0][0], self::size, 0);
       $coordinates[1] = self::map($new_coordinates[1], $camera->viewport[1][1], $camera->viewport[0][1], self::size, 0);
     }
 
