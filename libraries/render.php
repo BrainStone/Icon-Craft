@@ -94,7 +94,7 @@
     $arguments = sizeof($params);
 
     if(($arguments == 3) || ($arguments == 4)) {
-      $size_factor = (isset($params[3]) && is_numeric($params[3])) ? min(512, max(16, intval($params[3]))) / 16 : 2;
+      $size_factor = (isset($params[3]) && is_numeric($params[3])) ? min(512, max(8, intval($params[3]))) / 16 : 2;
       $positions = array(array(16, 7), array(16, 43), array(76, 25));
 
       if(isset($params[3])) unset($params[3]);
@@ -252,7 +252,7 @@
   } else {
     $im = block($params);
 
-    $final_size = (isset($params[1]) && is_numeric($params[1])) ? min(4096, max(16, intval($params[1]))) : 512;
+    $final_size = (isset($params[1]) && is_numeric($params[1])) ? min(4096, max(8, intval($params[1]))) : 32;
   }
 
   if($im === null) {
