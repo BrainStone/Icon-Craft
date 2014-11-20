@@ -51,9 +51,9 @@
     private function translate_coordinates(&$coordinates) {
       $camera= $this->render_data->camera;
 
-      $camera->yaw = deg2rad($camera->yaw);
-      $camera->pitch = deg2rad($camera->pitch);
-      $camera->roll = deg2rad($camera->roll);
+      $yaw = deg2rad($camera->yaw);
+      $pitch = deg2rad($camera->pitch);
+      $croll = deg2rad($camera->roll);
 
       /*self::rotate($coordinates[0], $coordinates[1], $camera->roll);
       self::rotate($coordinates[0], $coordinates[2], $camera->yaw);
@@ -62,13 +62,13 @@
       $new_coordinates = array(2);
 
       $new_coordinates[0] =
-        (sin($camera->yaw)*sin($camera->pitch)*sin($camera->roll)+cos($camera->yaw)*cos($camera->roll))*$coordinates[0] +
-        (sin($camera->yaw)*sin($camera->pitch)*cos($camera->roll)-cos($camera->yaw)*sin($camera->roll))*$coordinates[1] +
-        (sin($camera->yaw)*cos($camera->pitch))*$coordinates[2];
+        (sin($yaw)*sin($pitch)*sin($roll)+cos($yaw)*cos($roll))*$coordinates[0] +
+        (sin($yaw)*sin($pitch)*cos($roll)-cos($yaw)*sin($roll))*$coordinates[1] +
+        (sin($yaw)*cos($pitch))*$coordinates[2];
       $new_coordinates[1] =
-        (cos($camera->pitch)*sin($camera->roll))*$coordinates[0] +
-        (cos($camera->pitch)*cos($camera->roll))*$coordinates[1] -
-        sin($camera->pitch)*$coordinates[2];
+        (cos($pitch)*sin($roll))*$coordinates[0] +
+        (cos($pitch)*cos($roll))*$coordinates[1] -
+        sin($pitch)*$coordinates[2];
       unset($coordinates[2]);
 
       $coordinates[0] = self::map($new_coordinates[0], $camera->viewport[1][0], $camera->viewport[0][0], 0, self::size);
