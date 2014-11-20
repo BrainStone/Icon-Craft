@@ -6,7 +6,7 @@
 
   $headers = getallheaders();
   
-  if($headers["User-Agent"] == "GitHub-Hookshot/" . $passwords->github->hookshot) {
+  if(strpos($headers["User-Agent"], "GitHub-Hookshot/") === 0) {
     $request_body = file_get_contents('php://input');
     $data = json_decode($request_body);
     
