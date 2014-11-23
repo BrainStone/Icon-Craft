@@ -10,14 +10,11 @@ body {
     font-size: 14px;
     font-weight: normal;
 
-    background: rgba(125,125,125,1);
-    background: -moz-linear-gradient(top, rgba(125,125,125,1) 0%, rgba(181,181,181,1) 50%, rgba(125,125,125,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(125,125,125,1)), color-stop(50%, rgba(181,181,181,1)), color-stop(100%, rgba(125,125,125,1)));
-    background: -webkit-linear-gradient(top, rgba(125,125,125,1) 0%, rgba(181,181,181,1) 50%, rgba(125,125,125,1) 100%);
-    background: -o-linear-gradient(top, rgba(125,125,125,1) 0%, rgba(181,181,181,1) 50%, rgba(125,125,125,1) 100%);
-    background: -ms-linear-gradient(top, rgba(125,125,125,1) 0%, rgba(181,181,181,1) 50%, rgba(125,125,125,1) 100%);
-    background: linear-gradient(to bottom, rgba(125,125,125,1) 0%, rgba(181,181,181,1) 50%, rgba(125,125,125,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7d7d', endColorstr='#7d7d7d', GradientType=0 );
+    background: url("/includes/images/background.jpg") no-repeat center center fixed;
+  	background-size: cover;
+  	moz-background-size: cover;
+  	o-background-size: cover;
+  	webkit-background-size: cover;
 
 }
 
