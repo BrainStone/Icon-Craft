@@ -1,7 +1,11 @@
 #! /bin/bash
 
-if ! mkdir "/var/lock/icon-craft"
+lockdir=/var/lock/icon-craft
+
+if mkdir "$lockdir"
 then
+  trap 'rm -r "'"$lockdir"'"' EXIT
+else
   exit 1
 fi
 
@@ -25,5 +29,3 @@ then
   
   echo -e "\n\n\nFiles:\t\t$numfiles\nOld Size:\t$oldsize\nNew Size:\t$size\nReduced by:\t$(($oldsize - $size)) ($((permille / 10)).$((permille % 10))%)"
 fi
-
-rm -r "/var/lock/icon-craft"
