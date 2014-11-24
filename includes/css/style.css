@@ -1,11 +1,6 @@
-@font-face {
-  font-family: "Minecraftia";
-  src: url("/includes/css/fonts/Minecraftia.ttf");
-}
-
 body {
 
-/*    overflow:scroll; */
+    overflow:scroll; 
 
     background-color: #FFFFFF;
 
@@ -94,8 +89,6 @@ a.schwarz:active { color:#000000; }
     vertical-align: bottom;
     
     padding: 30px;
-    
-    font-family: "Minecraftia";
 
 }
 
