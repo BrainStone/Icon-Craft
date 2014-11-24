@@ -1,7 +1,7 @@
 <?php
-  require_once("libraries/uptime.php");
-  require_once("libraries/language.php");
-  require_once("libraries/util.php");
+  require_once($_SERVER["DOCUMENT_ROOT"] . "/libraries/uptime.php");
+  require_once($_SERVER["DOCUMENT_ROOT"] . "/libraries/language.php");
+  require_once($_SERVER["DOCUMENT_ROOT"] . "/libraries/util.php");
   
   function percentage($percentage) {
     $percentage_circle = (($percentage >= 0) ? (1.0 - round($percentage, 4)) : 1.0) * 180.0 * M_PI;

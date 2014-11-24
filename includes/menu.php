@@ -1,5 +1,8 @@
+<?php
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/libraries/language.php");
+?>
 <ul id="navigation" class="nav-main">
-    <li><a href="#"><?php echo translate("menu.home"); ?></a></li>
+    <li><a href="/"><?php echo translate("menu.home"); ?></a></li>
     
     <li class="list"><a href="#"><?php echo translate("menu.pages"); ?></a>
         <ul class="nav-sub">
