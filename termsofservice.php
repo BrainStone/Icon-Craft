@@ -38,7 +38,7 @@ require_once("libraries/minimize.php");
   <td colspan="2" class="index_menu"><?php include "includes/menu.php"; ?></td>
     </tr>
     <tr>
-      <td class="index_site_left"><?php translate("legal.tos") ?></td>
+      <td class="index_site_left"><?php translate("legal.tos"); ?></td>
   <td class="index_site_right">3</td>
     </tr>
     <tr>
