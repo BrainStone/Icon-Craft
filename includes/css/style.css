@@ -36,7 +36,9 @@ a.schwarz:hover { color:#000000; }
 a.schwarz:active { color:#000000; }
 
 .index_table {
-
+    
+    width: 1200px;
+    
     padding:0px;
 
     border-spacing:0px;
@@ -145,11 +147,15 @@ a.schwarz:active { color:#000000; }
     padding: 10px;
 
     border-left: 1px solid #000000;
-
 }
 
 .index_site_left {
-
+    
+    font-family: "Lucida Grande",Verdana,Helvetica,sans-serif;
+    font-size: 12px;
+    
+    
+    
     vertical-align: top;
 
     color:#000000;
