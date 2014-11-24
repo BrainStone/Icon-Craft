@@ -2,3 +2,12 @@ header.slogan=Your Blocks, your Style
 
 body.uptime.all_time=Uptime total:
 body.uptime.last_month=Uptime last month:
+
+menu.home=Home
+menu.pages=Pages
+menu.about=About
+menu.about.about=About
+menu.about.commercial=Commercial Usage
+menu.about.tos=Terms of Service
+menu.about.stats=Stats
+menu.contact=Contact

@@ -2,3 +2,12 @@ header.slogan=Deine Blöcke, dein Style
 
 body.uptime.all_time=Uptime gesamt:
 body.uptime.last_month=Uptime letzter Monat:
+
+menu.home=Home
+menu.pages=Seiten
+menu.about=Über
+menu.about.about=Über uns
+menu.about.commercial=Kommerzielle Verwendung
+menu.about.tos=Nutzungsbedingungen
+menu.about.stats=Statistiken
+menu.contact=Kontakt
