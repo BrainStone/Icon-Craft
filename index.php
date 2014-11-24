@@ -17,7 +17,6 @@ require_once("libraries/minimize.php");
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="stylesheet" type="text/css" href="/includes/css/style.css">
 <link rel="stylesheet" type="text/css" href="/includes/css/menu.css">
-<link rel="stylesheet" type="text/css" href="/includes/css/circle.css">
 <?php
   print_hreflang();
 ?>

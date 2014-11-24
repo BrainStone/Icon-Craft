@@ -246,3 +246,48 @@ div.lang_selector div.de input {
     left: -60px;
   }
 }
+
+.percent svg {
+  width: 100px;
+  height: 100px;
+}
+
+.percent svg circle {
+  stroke-width: 0.7em;
+  stroke-dasharray: 282.743338823;
+  fill: transparent;
+}
+
+.percent svg:first-child {
+  stroke-dashoffset: 0;
+  stroke: #666;
+}
+
+.percent {
+  display: block;
+  height: 100px;
+  width: 100px;
+  margin: 2em auto;
+  box-shadow: 0 0 1em black;
+  border-radius: 100%;
+  position: relative;
+}
+
+.percent:after {
+  position: absolute;
+  display: block;
+  height: 80px;
+  width: 80px;
+  left: 50%;
+  top: 50%;
+  box-shadow: inset 0 0 1em black;
+  content: attr(data-pct);
+  margin-top: -40px;
+  margin-left: -40px;
+  border-radius: 100%;
+  line-height: 80px;
+  font-size: 1em;
+  text-shadow: 0 0 0.5em black;
+  text-align: center;
+  color: white;
+}
