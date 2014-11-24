@@ -10,4 +10,6 @@ menu.about.about=About
 menu.about.commercial=Commercial Usage
 menu.about.tos=Terms of Service
 menu.about.stats=Stats
-menu.contact=Contact
+menu.contact=Contact#
+
+legal.tos=

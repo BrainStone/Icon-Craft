@@ -13,11 +13,10 @@ require_once("libraries/minimize.php");
 <html lang="<?php echo $_SESSION["language"]; ?>">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, follow">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="stylesheet" type="text/css" href="/includes/css/style.css">
 <link rel="stylesheet" type="text/css" href="/includes/css/menu.css">
-<link rel="stylesheet" type="text/css" href="/includes/css/circle.css">
 <?php
   print_hreflang();
 ?>
@@ -33,17 +32,17 @@ require_once("libraries/minimize.php");
 
 <table border="0" align="center" class="index_table">
     <tr>
-	<td colspan="2" class="index_header"><?php include "includes/header.php"; ?></td>
+  <td colspan="2" class="index_header"><?php include "includes/header.php"; ?></td>
     </tr>
     <tr>
-	<td colspan="2" class="index_menu"><?php include "includes/menu.php"; ?></td>
+  <td colspan="2" class="index_menu"><?php include "includes/menu.php"; ?></td>
     </tr>
     <tr>
-    	<td class="index_site_left"><?php include "includes/uptime.php"; ?></td>
-	<td class="index_site_right">3</td>
+      <td class="index_site_left"><?php translate("legal.tos") ?></td>
+  <td class="index_site_right">3</td>
     </tr>
     <tr>
-	<td colspan="2" class="index_footer"><?php include "includes/footer.php"; ?></td>
+  <td colspan="2" class="index_footer"><?php include "includes/footer.php"; ?></td>
     <tr>
 </table>
 

@@ -16,7 +16,7 @@
         <ul class="nav-sub">
             <li><a href="#"><?php echo translate("menu.about.about"); ?></a></li>
             <li><a href="#"><?php echo translate("menu.about.commercial"); ?></a></li>
-            <li><a href="#"><?php echo translate("menu.about.tos"); ?></a></li>
+            <li><a href="/termsofservice.php"><?php echo translate("menu.about.tos"); ?></a></li>
             <li><a href="#"><?php echo translate("menu.about.stats"); ?></a></li>
         </ul>
     </li>
