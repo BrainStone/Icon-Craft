@@ -18,5 +18,5 @@
         </ul>
     </li>
 
-    <li><a href="#"><?php echo translate("menu.contact"); ?>/a></li>
+    <li><a href="#"><?php echo translate("menu.contact"); ?></a></li>
 </ul>
