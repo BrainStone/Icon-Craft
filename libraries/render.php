@@ -214,7 +214,7 @@
   header("Pragma: public");
   header('Cache-Control: "public, must-revalidate, proxy-revalidate"');
   
-  $params = explode("/", strtolower($_SERVER["REQUEST_URI"]));
+  $params = explode("/", urldecode(strtolower($_SERVER["REQUEST_URI"])));
   $im = null;
   array_shift($params);
   connect_mysqli();
