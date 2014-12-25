@@ -138,6 +138,12 @@
       list($item, $meta) = explode(";", $item);
       
       $meta = min(15, max(0, intval($meta)));
+    }
+
+    $number = null;
+
+    if(preg_match("/^\\d{1,2}x/", $item)) {
+      list($number, $item) = explode("x", $item, 2);
     }   
     
     $result = $mysqli->query("SELECT `Meta`, `RenderAs`, (SELECT `File` FROM `RenderTypes` WHERE `ID` = `RenderType` LIMIT 1) AS `RenderFile`, `Textures` FROM `RenderData` WHERE `ModID` = (SELECT `ID` FROM `ModIDs` WHERE `ModID` = '" . $mysqli->real_escape_string($modid) . "' LIMIT 1) AND `Name` = '" . $mysqli->real_escape_string($item) . "' AND (`Meta` = '*' OR `Meta` = '$meta') ORDER BY `Meta` ASC LIMIT 1");
@@ -191,10 +197,18 @@
       $im = render_block("", "", "");
     }
 
+    if(($number !== null) && ($number !== 1)) {
+      $white = imagecolorallocate($im, 255, 255, 255);
+      $black = imagecolorallocate($im, 255, 255, 255);
+
+      imagettftext($im, 384, 0, 1600, 1600, $black, "../includes/css/fonts/Minecraftia.ttf");
+      imagettftext($im, 384, 0, 1536, 1536, $white, "../includes/css/fonts/Minecraftia.ttf");
+    }
+
     return $im;
   }
   
-  header('Expires: '.gmdate('D, d M Y H:i:s \G\M\T', time() + 604800));
+  header("Expires: " . gmdate("D, d M Y H:i:s \G\M\T", time() + 604800));
   header("Pragma: public");
   header('Cache-Control: "public, must-revalidate, proxy-revalidate"');
   
