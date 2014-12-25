@@ -142,8 +142,8 @@
 
     $number = null;
 
-    if(preg_match("/^\\d{1,2}x/", $item)) {
-      list($number, $item) = explode("x", $item, 2);
+    if(preg_match("/^\\d{1,2}\\*/", $item)) {
+      list($number, $item) = explode("*", $item, 2);
     }   
     
     $result = $mysqli->query("SELECT `Meta`, `RenderAs`, (SELECT `File` FROM `RenderTypes` WHERE `ID` = `RenderType` LIMIT 1) AS `RenderFile`, `Textures` FROM `RenderData` WHERE `ModID` = (SELECT `ID` FROM `ModIDs` WHERE `ModID` = '" . $mysqli->real_escape_string($modid) . "' LIMIT 1) AND `Name` = '" . $mysqli->real_escape_string($item) . "' AND (`Meta` = '*' OR `Meta` = '$meta') ORDER BY `Meta` ASC LIMIT 1");
@@ -198,11 +198,13 @@
     }
 
     if(($number !== null) && ($number !== 1)) {
-      $white = imagecolorallocate($im, 255, 255, 255);
-      $black = imagecolorallocate($im, 255, 255, 255);
+      $width = imagettfbbox(768, 0, "../includes/css/fonts/Minecraftia.ttf", $number)[2];
 
-      imagettftext($im, 384, 0, 1600, 1600, $black, "../includes/css/fonts/Minecraftia.ttf");
-      imagettftext($im, 384, 0, 1536, 1536, $white, "../includes/css/fonts/Minecraftia.ttf");
+      $white = imagecolorallocate($im, 255, 255, 255);
+      $black = imagecolorallocate($im, 63, 63, 63);
+
+      imagettftext($im, 768, 0, 2176 - $width, 2048, $black, "../includes/css/fonts/Minecraftia.ttf", $number);
+      imagettftext($im, 768, 0, 2048 - $width, 1920, $white, "../includes/css/fonts/Minecraftia.ttf", $number);
     }
 
     return $im;
