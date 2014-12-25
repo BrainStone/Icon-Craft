@@ -125,6 +125,12 @@
 
       return $im;
     }
+
+    $number = null;
+
+    if(preg_match("/^\\d{1,2}\\*/", $item)) {
+      list($number, $item) = explode("*", $item, 2);
+    } 
     
     if(strpos($item, ":") === false) {
       $modid = "minecraft";
@@ -138,13 +144,7 @@
       list($item, $meta) = explode(";", $item);
       
       $meta = min(15, max(0, intval($meta)));
-    }
-
-    $number = null;
-
-    if(preg_match("/^\\d{1,2}\\*/", $item)) {
-      list($number, $item) = explode("*", $item, 2);
-    }   
+    }  
     
     $result = $mysqli->query("SELECT `Meta`, `RenderAs`, (SELECT `File` FROM `RenderTypes` WHERE `ID` = `RenderType` LIMIT 1) AS `RenderFile`, `Textures` FROM `RenderData` WHERE `ModID` = (SELECT `ID` FROM `ModIDs` WHERE `ModID` = '" . $mysqli->real_escape_string($modid) . "' LIMIT 1) AND `Name` = '" . $mysqli->real_escape_string($item) . "' AND (`Meta` = '*' OR `Meta` = '$meta') ORDER BY `Meta` ASC LIMIT 1");
     
