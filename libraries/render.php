@@ -128,7 +128,7 @@
 
     $number = null;
 
-    if(preg_match("/^\\d{1,2}\\x/", $item)) {
+    if(preg_match("/^\\d{1,2}x/", $item)) {
       list($number, $item) = explode("x", $item, 2);
     } 
     
