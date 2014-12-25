@@ -128,8 +128,8 @@
 
     $number = null;
 
-    if(preg_match("/^\\d{1,2}\\*/", $item)) {
-      list($number, $item) = explode("*", $item, 2);
+    if(preg_match("/^\\d{1,2}\\x/", $item)) {
+      list($number, $item) = explode("x", $item, 2);
     } 
     
     if(strpos($item, ":") === false) {
