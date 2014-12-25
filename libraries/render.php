@@ -197,7 +197,7 @@
       $im = render_block("", "", "");
     }
 
-    if(($number !== null) && ($number !== "1")) {
+    if(($number !== null) && ($number != 1)) {
       $width = imagettfbbox(768, 0, "../includes/css/fonts/Minecraftia.ttf", $number)[2];
 
       $white = imagecolorallocate($im, 255, 255, 255);
