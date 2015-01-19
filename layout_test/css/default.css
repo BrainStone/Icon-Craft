@@ -6,6 +6,11 @@
  * Free to use under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  */
+@font-face {
+  font-family: "Minecraftia";
+  src: url("/includes/css/fonts/Minecraftia.ttf");
+}
+
 @media all{
 	body{
 		font:14px Arial, Helvetica, sans-serif;
@@ -52,7 +57,7 @@
 	}
 	.subHeading{
 		display:block;
-		font:2.357em/1.151em 'PT Sans', Arial, Helvetica, sans-serif; /*33px/38px*/
+		font:2.357em/1.151em "Minecraftia", 'PT Sans', Arial, Helvetica, sans-serif; /*33px/38px*/
 		margin:0 0 1em;
 		text-align:center;
 		color:#7a7a7a;
