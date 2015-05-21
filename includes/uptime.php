@@ -4,7 +4,7 @@
   require_once($_SERVER["DOCUMENT_ROOT"] . "/libraries/util.php");
   
   function percentage($percentage) {
-    $percentage_circle = (($percentage >= 0) ? (1.0 - round($percentage, 4)) : 1.0) * 180.0 * M_PI;
+    $percentage_circle = (($percentage >= 0) ? (1.0 - round($percentage, 4)) : 1.0) * 90.0 * M_PI;
     $percentage_display = ($percentage >= 0) ? number_format(round($percentage * 100, 2), 2) . " %" : "n/a";
     $color = "#" . dechex(get_color_from_gradient($percentage * 100, array(0 => 0x781003, 80 => 0xE31820, 90 => 0xF76820, 95 => 0xD7D820, 99 => 0x2C9F1E, 100 => 0x128007)));
     
