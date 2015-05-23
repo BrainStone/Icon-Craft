@@ -16,8 +16,8 @@
   }
 
   function setHeaders() {
-    $timestamp = getlastmod($_GET["file"])
-    $tsstring = gmdate('D, d M Y H:i:s ', $timestamp) . 'GMT';
+    $timestamp = getlastmod($_GET["file"]);
+    $tsstring = gmdate("D, d M Y H:i:s ", $timestamp) . "GMT";
     $etag = md5($_GET["file"] . $timestamp);
 
     $if_modified_since = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : false;
@@ -27,9 +27,7 @@
     {
       header('HTTP/1.1 304 Not Modified');
       exit();
-  }
-    else
-    {
+    } else {
       header("Last-Modified: $tsstring");
       header("ETag: \"$etag\"");
       header("Expires: " . gmdate('D, d M Y H:i:s \G\M\T', time() + 604800));
