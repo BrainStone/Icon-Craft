@@ -30,17 +30,15 @@
       call_404();
     }
 
+    header("Last-Modified: $tsstring");
+    header("Expires: " . gmdate('D, d M Y H:i:s \G\M\T', time() + $cache_age));
+    header("Pragma: public");
+    header("Cache-Control: \"max-age=$cache_age, public, must-revalidate, proxy-revalidate\"");
+
     if($if_modified_since && ($if_modified_since == $tsstring)) {
       header("HTTP/1.1 304 Not Modified");
 
       exit();
-
-      echo "/*WTF*/\n";
-    } else {
-      header("Last-Modified: $tsstring");
-      header("Expires: " . gmdate('D, d M Y H:i:s \G\M\T', time() + $cache_age));
-      header("Pragma: public");
-      header("Cache-Control: \"max-age=$cache_age, public, must-revalidate, proxy-revalidate\"");
     }
   }
   
