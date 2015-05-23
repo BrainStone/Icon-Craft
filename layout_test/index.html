@@ -4,6 +4,16 @@
 <title>Icon-Craft.net - Your Blocks, your Style</title>
 <meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1">
 <link rel="stylesheet" type="text/css" href="css/default.css" media="all">
+<style type="text/css">
+/* Small fix for until the slider has initialized */
+div.gallery > ul.slides > li > img {
+  display: none;
+}
+
+div.gallery > ul.slides > li > img:first-of-type {
+  display: default;
+}
+</style>
 <noscript>
   <link rel="stylesheet" type="text/css" href="css/flexslider.css">
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans">
