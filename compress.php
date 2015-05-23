@@ -18,9 +18,10 @@
   function setHeaders() {
     global $file;
 
+    $tsstring = gmdate("D, d M Y H:i:s \G\M\T", filemtime($file));
     $if_modified_since = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : false;
 
-    if($if_modified_since && ($if_modified_since == gmdate("D, d M Y H:i:s \G\M\T", filemtime($file)))) {
+    if($if_modified_since && ($if_modified_since == $tsstring)) {
       header('HTTP/1.1 304 Not Modified');
       exit();
     } else {
