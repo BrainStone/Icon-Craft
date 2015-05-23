@@ -16,9 +16,11 @@
   }
 
   function setHeaders() {
-    $timestamp = filemtime($_GET["file"]);
+    global $file;
+
+    $timestamp = filemtime($file);
     $tsstring = gmdate("D, d M Y H:i:s ", $timestamp) . "GMT";
-    $etag = md5($_GET["file"]);
+    $etag = md5($file);
 
     $if_modified_since = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : false;
     $if_none_match = isset($_SERVER['HTTP_IF_NONE_MATCH']) ? $_SERVER['HTTP_IF_NONE_MATCH'] : false;
