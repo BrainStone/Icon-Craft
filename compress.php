@@ -19,10 +19,19 @@
     global $file;
 
     $tsstring = gmdate("D, d M Y H:i:s \G\M\T", filemtime($file));
-    $if_modified_since = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? $_SERVER['HTTP_IF_MODIFIED_SINCE'] : false;
+    $if_modified_since = isset($_SERVER["HTTP_IF_MODIFIED_SINCE"]) ? $_SERVER["HTTP_IF_MODIFIED_SINCE"] : false;
+
+    if($_GET["type"] == "css") {
+      header("Content-type: text/css;charset=utf-8");
+    } elseif($_GET["type"] == "js") {
+      header("Content-type: text/javascript;charset=utf-8");
+    } else {
+      call_404();
+    }
 
     if($if_modified_since && ($if_modified_since == $tsstring)) {
-      header('HTTP/1.1 304 Not Modified');
+      header("HTTP/1.1 304 Not Modified");
+      
       exit();
     } else {
       header("Last-Modified: $tsstring");
@@ -38,14 +47,6 @@
   $file = $_SERVER["DOCUMENT_ROOT"] . $_GET["file"];
   $cache = $_SERVER["DOCUMENT_ROOT"] . "/cache/" . $_GET["type"] . "/" . $_GET["file"] . ".php";
   if(!file_exists($file)) call_404();
-  
-  if($_GET["type"] == "css") {
-    header("Content-type: text/css;charset=utf-8");
-  } elseif($_GET["type"] == "js") {
-    header("Content-type: text/javascript;charset=utf-8");
-  } else {
-    call_404();
-  }
 
   setHeaders();
     
