@@ -15,6 +15,19 @@
       
       if($headers["X-Hub-Signature"] == ("$algorithm=" . hash_hmac($algorithm, $request_body, $passwords->github->secret))) {
         passthru("git reset --hard && git clean -f && git pull");
+
+        $message = "";
+
+        foreach($data->commits as $commit) {
+          $message .= "Id: $commit->id\n\nMessage:\n\n";
+
+          foreach(explode("\n", $commit->message) as $line)
+            $message .= "$line\n";
+
+          $message .= "\n\n";
+        }
+
+        mail($passwords->github->email, "Updated Icon-Craft.net", $message);
       }
     }
   } else {
