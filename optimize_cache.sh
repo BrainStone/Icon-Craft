@@ -2,7 +2,7 @@
 
 lockdir=/var/lock/icon-craft
 
-if mkdir "$lockdir"
+if mkdir "$lockdir" > /dev/null 2>&1
 then
   trap 'rm -r "'"$lockdir"'"' EXIT
 else
