@@ -24,7 +24,7 @@ then
   printf -- '%s\n' "${files[@]}"
   echo
   
-  executeWithTime "Image Optimizer" echo ${files[@]} | xargs -r --max-procs=4 -n1 sh -c 'echo -e "Optimizing\t\t${1:'${#dir}'} ..." && (optipng -o7 "$1" && advpng -z -4 "$1" && advdef -z -4 "$1" && pngcrush "$1" "$1.optimized" && rm "$1") > /dev/null && echo -e "Finished optimizing\t${1:'${#dir}'}"' -
+  executeWithTime "Image Optimizer" imageOptimizer
   
   files=("${files[@]/%/.optimized}")
   size=$(du -bsc ${files[@]} | tail -1 | cut -f1)
@@ -32,3 +32,7 @@ then
   
   echo -e "\n\n\nFiles:\t\t$numfiles\nOld Size:\t$oldsize\nNew Size:\t$size\nReduced by:\t$(($oldsize - $size)) ($((permille / 10)).$((permille % 10))%)"
 fi
+
+function imageOptimizer() {
+  echo ${files[@]} | xargs -r --max-procs=4 -n1 sh -c 'echo -e "Optimizing\t\t${1:'${#dir}'} ..." && (optipng -o7 "$1" && advpng -z -4 "$1" && advdef -z -4 "$1" && pngcrush "$1" "$1.optimized" && rm "$1") > /dev/null && echo -e "Finished optimizing\t${1:'${#dir}'}"' -
+}
