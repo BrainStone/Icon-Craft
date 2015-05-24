@@ -13,7 +13,7 @@ dir="/var/www/icon-craft/cache/render/"
 files=($(find $dir -iname "*png" | sort))
 scriptdir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
-source "$scriptdir/excecuteWithTime.sh"
+source "$scriptdir/executeWithTime.sh"
 
 if [ -n "$files" ]
 then
