@@ -36,7 +36,8 @@
           $message .= "\n\n-----------------------------------------------------------------------------\n\n";
         }
 
-        mail($passwords->github->email, "Updated Icon-Craft.net", $message);
+        // Strip the last line from the message and send it to the update mail.
+        mail($passwords->github->email, "Updated Icon-Craft.net", substr($message, 0, -81));
       }
     }
   } else {
