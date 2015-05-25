@@ -24,7 +24,7 @@
           foreach(explode("\n", $commit->message) as $line)
             $message .= "\t$line\n";
 
-          $message .= "\n\nFiles:\n\n";
+          $message .= "\nFiles:\n\n";
 
           foreach($commit->added as $file)
             $message .= " + $file\n";
