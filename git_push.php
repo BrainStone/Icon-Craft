@@ -22,9 +22,18 @@
           $message .= "Id: $commit->id\n\nMessage:\n\n";
 
           foreach(explode("\n", $commit->message) as $line)
-            $message .= "$line\n";
+            $message .= "\t$line\n";
 
-          $message .= "\n\n";
+          $message .= "\n\nFiles:\n\n";
+
+          foreach($commit->added as $file)
+            $message .= " + $file\n";
+          foreach($commit->modified as $file)
+            $message .= " * $file\n";
+          foreach($commit->removed as $file)
+            $message .= " - $file\n";
+
+          $message .= "\n\n-----------------------------------------------------------------------------\n\n";
         }
 
         mail($passwords->github->email, "Updated Icon-Craft.net", $message);
