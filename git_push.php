@@ -37,7 +37,7 @@
         }
 
         // Strip the last line from the message and send it to the update mail.
-        mail($passwords->github->email, "Updated Icon-Craft.net", substr($message, 0, -81));
+        mail($passwords->github->email, "Updated Icon-Craft.net", substr($message, 0, -82));
       }
     }
   } else {
