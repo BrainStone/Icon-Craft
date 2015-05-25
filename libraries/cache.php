@@ -4,7 +4,7 @@
   function cache_output($buffer) {
     global $cache_location;
     
-    mkdir(dirname($cache_location), 0775, true);
+    @mkdir(dirname($cache_location), 0775, true);
     file_put_contents($cache_location, $buffer);
     chmod($cache_location, 0775);
     
