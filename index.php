@@ -4,6 +4,7 @@ header("Content-Type: text/html;charset=utf-8");
 require_once("libraries/language.php");
 
 // Cache the page
+$max_cache_lifetime = 1800;
 require_once("libraries/cache.php");
 // Make HTML as small as possible!
 require_once("libraries/minimize.php");
