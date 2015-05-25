@@ -14,7 +14,7 @@
   if($cacheEnabled) {
     $cache_location = $_SERVER["DOCUMENT_ROOT"] . "/cache/html/" . ((session_status() == PHP_SESSION_ACTIVE)? $_SESSION["language"] : "no_session") . $_SERVER["REQUEST_URI"] . ".cache";
     
-    if(file_exists($cache_location) && !(isset($max_cache_lifetime) && ((time() - filemtime($cache_location)) > $max_cache_lifetime)) {
+    if(file_exists($cache_location) && !(isset($max_cache_lifetime) && ((time() - filemtime($cache_location)) > $max_cache_lifetime))) {
       ob_end_flush();
       
       readfile($cache_location);
