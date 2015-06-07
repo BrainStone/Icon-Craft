@@ -35,7 +35,7 @@
   }
 
   function crafting_common($cache_name, $texture, $params, $positions, $size_factor) {
-    global $im, $final_size_x, $final_size_y;
+    global $im, $final_size_x, $final_size_y, $set_404;
 
     list($final_size_x, $final_size_y) = getimagesize($texture);
     $final_size_x *= $size_factor;
@@ -54,10 +54,12 @@
 
       cache_image("minecraft", "crafting", $cache_name, $im);
     }
+
+    $set_404 = false;
   }
 
   function crafting($params) {
-    global $im, $final_size_x, $final_size_y;
+    global $im, $final_size_x, $final_size_y, $set_404;
     require_once("renderers/crafting_renderer.php");
 
     array_shift($params);
@@ -78,6 +80,7 @@
     } else {
       require_once("renderers/block_renderer.php");
       
+      $set_404 = true;
       $im = render_block("", "", "");
 
       return;
@@ -87,7 +90,7 @@
   }
 
   function smelting($params) {
-    global $im, $final_size_x, $final_size_y;
+    global $im, $final_size_x, $final_size_y, $set_404;
     require_once("renderers/crafting_renderer.php");
 
     array_shift($params);
@@ -101,6 +104,7 @@
     } else {
       require_once("renderers/block_renderer.php");
       
+      $set_404 = true;
       $im = render_block("", "", "");
 
       return;
@@ -110,7 +114,7 @@
   }
 
   function block($params) {
-    global $mysqli;
+    global $mysqli, $set_404;
 
     $item = $params[0];
 
@@ -194,6 +198,7 @@
     } else {
       require_once("renderers/block_renderer.php");
       
+      $set_404 = true;
       $im = render_block("", "", "");
     }
 
@@ -210,11 +215,11 @@
     return $im;
   }
   
-  header("HTTP/1.1 200 Ok");
   header("Expires: " . gmdate("D, d M Y H:i:s \G\M\T", time() + 604800));
   header("Pragma: public");
   header('Cache-Control: "public, must-revalidate, proxy-revalidate"');
   
+  $set_404 = false;
   $params = explode("/", urldecode(strtolower($_SERVER["REQUEST_URI"])));
   $im = null;
   array_shift($params);
@@ -273,13 +278,18 @@
   }
 
   if($im === null) {
-    header("HTTP/1.1 404 Not Found");
-
     require_once("renderers/block_renderer.php");
       
+    $set_404 = true;
     $im = render_block("", "", "");
 
     $final_size = 512;
+  }
+
+  if($set_404) {
+    http_response_code(404);
+  } else {
+    http_response_code(200);
   }
 
   if((!isset($final_size_x) || !isset($final_size_y)) && isset($final_size)) {
