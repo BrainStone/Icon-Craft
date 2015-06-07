@@ -210,6 +210,7 @@
     return $im;
   }
   
+  header("HTTP/1.1 200 Ok");
   header("Expires: " . gmdate("D, d M Y H:i:s \G\M\T", time() + 604800));
   header("Pragma: public");
   header('Cache-Control: "public, must-revalidate, proxy-revalidate"');
@@ -272,6 +273,8 @@
   }
 
   if($im === null) {
+    header("HTTP/1.1 404 Not Found");
+
     require_once("renderers/block_renderer.php");
       
     $im = render_block("", "", "");
