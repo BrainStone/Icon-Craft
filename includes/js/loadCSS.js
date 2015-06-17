@@ -8,10 +8,11 @@ function loadCSS() {
   var loadCSS = window.document.getElementById("loadCSS");
 
   if(head && loadCSS) {
-     head.innerHTML += loadCSS.innerHTML;
+    head.innerHTML += loadCSS.innerHTML;
+    head.removeChild(loadCSS);
 
-     alreadyLoadedCSS = true;
+    alreadyLoadedCSS = true;
   }
 }
 
-setTimeout( loadCSS );
+window.addEventListener("load", loadCSS, false);
