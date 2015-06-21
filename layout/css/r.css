@@ -1,0 +1,567 @@
+/*
+**	r.css created by Patrick Pawlus
+**	Version: 0.0.1
+**	Last update: -
+**	Modyfied on: 02.06.2015
+**
+**	------------------------------------
+**
+**	Index:
+**		0. Includes
+**		1. Main
+**		x. Menu
+**		2. Forms
+**		3. Devices
+**		 3.1 Mobile
+**		 3.3 Tablet
+**		 3.3 Desktop
+**		 3.4 Desktop HD
+**		 3.5 TV
+**		4. Images
+**		x. Font Styling
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@font-face {
+    font-family: Minecraftia;
+    src: url(../font/Minecraftia.ttf);
+}
+
+/*
+**	1. Main 
+**	------------------------------------
+*/
+
+body {
+	margin: 0;
+	min-height: 100%;
+	background-color: #fafafa;
+}
+
+[class^="r-"] {
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+	float: left;
+	position: relative;
+	left: 0;
+	display: block;
+}
+
+section {
+	margin-bottom: 20px;
+}
+
+div.boxed {
+	background: #fff;
+	border: 1px solid #D8D8D8;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+	color: #000;
+}
+
+section.boxed {
+	box-shadow: none;
+	border-width: 1px 0;
+	border-style: solid;
+	border-color: #D8D8D8;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+}
+
+.social {
+	text-align: center;
+	padding: 10px;
+}
+
+.copyright { 
+	text-align: center;
+	color: #777;
+}
+
+.popup {
+	position: absolute;
+	display: block;
+	background: white;
+	top: 25vh;
+	margin: 0 auto;
+	width: 500px;
+	padding: 10px;
+	left: 0;
+	right: 0;
+	border: 1px solid #D8D8D8;
+}
+
+.close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 25px;
+	color: #D8D8D8;
+}
+
+.close * { color: #D8D8D8; }
+
+/*.popup:after {
+	content: "";
+	position: fixed;
+	background: rgba(128,128,128,0.50);
+	height: 100vh;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}*/
+
+a {
+	color: #FA0;
+	text-decoration: none;
+	transition: .2s all;
+}
+
+a:hover {
+	color: #FF5;
+}
+
+.pre-footer * {
+	color: #fff;
+	font-family: Minecraftia;
+}
+
+.footer * {
+	color: #fff;
+	font-family: Minecraftia;
+}
+
+.pre-footer {
+	background: #eee;
+}
+
+.footer {
+	padding: 10px 0;
+	color: #fff;
+	background: #777;
+	background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url("../img/dirt.png");
+	background-size: 32px;
+	box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.5);
+}
+
+.main {
+	color: #fff;
+	background-image: linear-gradient( rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85) ), url("../img/dirt.png");
+	background-size: 32px;
+}
+
+.footer > .light-content, .footer > .dark-content {
+	border: none;
+}
+
+.text-align-left { text-align: left; }
+.text-align-center { text-align: center; }
+.text-align-right { text-align: right; }
+
+.float-left { float: left !important; }
+.float-right { float: right !important; }
+
+/*
+**	1/2. Header & Navigation 
+**	------------------------------------
+*/
+
+/*
+**	2. Forms 
+**	------------------------------------
+*/
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+	width: 100%;
+	padding: 10px;
+	border: 0;
+	border-bottom: 2px solid #FFF;
+	box-sizing: border-box;
+	background-color: transparent;
+}
+
+input[type="button"],
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="submit"]:focus,
+textarea:focus {
+	outline: none;
+}
+
+input[type="button"],
+input[type="submit"] {
+	font-family: Minecraftia;
+	font-weight: 600;
+	width: 100%;
+	margin-top: 10px;
+	text-transform: uppercase;
+	padding: 10px;
+	border: 0;
+	box-sizing: border-box;
+	background-color: #fff;
+	color: #00AAAA;
+	transition: color .1s, background-color .1s;
+}
+
+input[type="button"]:hover,
+input[type="submit"]:hover {
+	color: #fff;
+	background-color: #00AAAA;
+}
+
+input[type="button"]:focus,
+input[type="submit"]:focus {
+	color: #fff;
+	background-color: #1EAEDB;
+}
+
+::-webkit-input-placeholder {
+   color: #f9f9f9;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #f9f9f9;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #f9f9f9;  
+}
+
+:-ms-input-placeholder {  
+   color: #f9f9f9;  
+}
+
+/*
+**	3. Devices 
+**	------------------------------------
+*/
+
+	/*
+	**	3.1 Mobile 
+	**	------------------------------------
+	*/
+	
+	@media (min-width: 800px) {
+		.r-1-2 { width: 100%; }
+	}
+	
+	/*
+	**	3.3 Tablet 
+	**	------------------------------------
+	*/
+	
+	@media (min-width: 1000px) {
+		.r-1 { width: 100%; }
+		.r-1-2, .r-1-3, .r-1-8, .r-2-3, .r-3-4, .r-7-8 { width: 50%; }
+		
+		
+		/*
+		**	Header & Navigation 
+		**	------------------------------------
+		*/
+
+		.pre-header {
+			padding: 20px;
+			position: fixed;
+		}
+
+		body .header {
+			width: 100%;
+			position: absolute;
+			z-index: 100;
+			transition: .2s background;
+			background: none;
+		}
+
+		body.sticky-header .header {
+			width: 100%;
+			position: fixed;
+			z-index: 150;
+			transition: .2s background;
+		}
+
+		body .header-background {
+			width: 100%;
+			position: absolute;
+			z-index: 100;
+			transition: .5s all;
+			background: none;
+			opacity: 0;
+			height: 84px;
+			transform: translateY(-84px);
+		}
+
+		body.sticky-header .header-background {
+			width: 100%;
+			height: 84px;
+			background-color: #fff;
+			box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.5);
+			position: fixed;
+			z-index: 100;
+			transition: .2s all;
+			opacity: 1;
+			transform: translateY(0px);
+		}
+
+		.header-title {
+			padding: 27px 20px;
+			font-size: 20px;
+			font-family: Minecraftia;
+			color: #FFF;
+			text-shadow: 2px 2px 0 #3F3F3F;
+			transition: .2s all;
+		}
+
+		body.sticky-header .header-title, body.sticky-header a {
+			color: #00AAAA;
+			text-shadow: none;
+			transition: .2s all;
+		}
+
+		.header-navigation a {
+			color: #FFF;
+			text-shadow: 2px 2px 0 #3F3F3F;
+		}
+
+		.header-navigation {
+			z-index: 150;
+			position: relative
+		}
+
+		.header-navigation * {
+			font-family: Minecraftia;
+		}
+
+		.header-navigation ul {
+			margin: 0;
+			padding: 0;
+		}
+
+		.header-navigation li {
+			list-style: none;
+		}
+
+		.header-navigation > ul > li {
+			float: left;
+		}
+
+		.header-navigation > ul > li > a {
+			display: block;
+			padding: 30px 20px;
+		}
+
+		ul.dropdown a {	
+			padding: 15px;
+			display: block;
+		}
+
+		ul.dropdown {
+			visibility: hidden;
+			display: none;
+			transition: all .3s;
+		}
+
+		ul.dropdown > li {
+			border-bottom: 1px solid #D8D8D8;
+		}
+
+		li.dropdown:hover > ul.dropdown {
+			max-width: 300px;
+			display: block;
+			position: absolute;
+			background-color: #fff;
+			visibility: visible;
+			transition: 5s all;
+			border-left: 1px solid #D8D8D8;
+			border-right: 1px solid #D8D8D8;
+			border-bottom: 2px solid #1EAEDB;
+			border-top: 2px solid #1EAEDB;
+			z-index: 1000;
+		}
+
+		li.dropdown:hover > ul.dropdown:before {
+			content: "";
+			display: block;
+			position: absolute;
+			top: -10px;
+			left: 35px;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 10px 10px 10px;
+			border-color: transparent transparent #1EAEDB transparent;
+		}	
+		
+		
+	}
+	
+	/*
+	**	3.3 Desktop
+	**	------------------------------------
+	*/
+	
+	@media (min-width: 1200px) {
+		.r-1  { width: 100%; }
+		.r-1-4 { width: 25%; }
+		.r-1-2, .r-1-8 { width: 50%; }
+		.r-1-3 { width: 33.33%; }
+		.r-2-3, .r-3-4, .r-7-8 { width: 66.66%; }
+	}
+	
+	/*
+	**	3.4 Desktop HD 
+	**	------------------------------------
+	*/
+	
+	@media (min-width: 1400px) {
+		.r-1, { width: 100%; }
+		.r-1-2{ width: 50%; }
+		.r-1-3 { width: 33.33%; }
+		.r-2-3 { width: 66.66%; }
+		.r-1-8 { width: 25%; }
+		.r-3-4, .r-7-8 { width: 75%; }
+	}
+	
+	/*
+	**	3.5 TV 
+	**	------------------------------------
+	*/
+	
+	@media (min-width: 1600px) {
+		.r-1 { width: 100%; }
+		.r-1-2 { width: 50%; }
+		.r-1-3 { width: 33.33%; }
+		.r-2-3 { width: 66.66%; }
+		.r-3-4 { width: 75%; }
+		.r-1-8 { width: 12.5%; }
+		.r-7-8 { width: 87.5%; }
+	}
+
+/*
+**	4. Images 
+**	------------------------------------
+*/
+
+[class^="img-"] {
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.img-example { background-image: url("https://php-friends.de/assets/img/20141204-header-bg-colours.jpg"); }
+
+
+/*
+**	x. Font Styling 
+**	------------------------------------
+*/
+
+* {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: Minecraftia;
+	margin: 0 0 10px 0;
+	color: #FFF;
+	text-shadow: 2px 2px 0 #3F3F3F;
+	z-index: 10;
+}
+	
+h1 { font-size: 1.8em; }
+h2 { font-size: 1.6em; }
+h3 { font-size: 1.5em; }
+h4 { font-size: 1.3em; }
+h5 { font-size: 1.1em; }
+h6 { font-size: 1em; }
+
+
+
+/*
+**	Sonstiges 
+**	------------------------------------
+*/
+
+.header-navigation:after,
+.pre-footer:after,
+.footer:before,
+.footer:after,
+.container:before,
+.container:after,
+.main:before,
+.main:after,
+section:before,
+section:after,
+.pre-header:after,
+.header:after,
+.boxed:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+p {
+	margin-bottom: 0;
+	line-height: 1.5;
+}
+.padding-bottom-0 { padding-bottom: 0 !important; }
+.margin-bottom-20 { margin-bottom: 20px !important; }
+hr {
+    margin: 15px 0;
+    padding: 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+.container {
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.dark-green { background-color: #00AA00; }
+.dark-blue { background-color: #0000AA; }
+.dark-grey { background-color: #555; }
+.grey { background-color: #AAA; }
+
+.white { 
+	background-color: #fff;
+}
+
+.white * { 
+	color: #000;
+	text-shadow: none;
+}
+
+div.top {
+	top: 84px;
+	position: absolute;
+}
+
+a.top {
+	transform: translateY(50px);
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	transition: all .2s;
+	margin-bottom: -50px;
+}
+
+body.sticky-header a.top {
+	transform: translateY(0);
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	transition: all .2s;
+	color: #00AAAA;
+	text-shadow: 2px 2px 0 #002A2A;
+	margin-bottom: 0px;
+}
