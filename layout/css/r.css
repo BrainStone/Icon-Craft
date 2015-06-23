@@ -568,5 +568,5 @@ body.sticky-header a.top {
 
 .anchor {
 	position: absolute;
-	top: -84px;
+	margin-top: -84px;
 }
