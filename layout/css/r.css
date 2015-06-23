@@ -543,7 +543,7 @@ hr {
 
 div.top {
 	top: 84px;
-	position: absolute;
+	position: relative;
 }
 
 a.top {
