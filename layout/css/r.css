@@ -2,7 +2,7 @@
 **	r.css created by Patrick Pawlus
 **	Version: 0.0.1
 **	Last update: -
-**	Modyfied on: 02.06.2015
+**	Modyfied on: 23.06.2015
 **
 **	------------------------------------
 **
@@ -564,4 +564,9 @@ body.sticky-header a.top {
 	color: #00AAAA;
 	text-shadow: 2px 2px 0 #002A2A;
 	margin-bottom: 0px;
+}
+
+.anchor {
+	display: relative;
+	top: -84px;
 }
