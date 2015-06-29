@@ -121,6 +121,10 @@ a:hover {
 	color: #FF5;
 }
 
+.pre-header {
+	z-index: 1000;
+}
+
 .pre-footer * {
 	color: #fff;
 	font-family: Minecraftia;
