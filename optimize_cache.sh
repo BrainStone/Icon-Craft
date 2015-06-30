@@ -13,15 +13,8 @@ dir="/var/www/icon-craft/cache/render/"
 files=($(find $dir -iname "*png" | sort))
 PATH="$PATH:/usr/local/bin"
 
-function ECHO {
-  if [ -n "$PS1" ]
-  then
-    echo "$@"
-  fi
-}
-
 function imageOptimizer() {
-  echo ${files[@]} | xargs -r --max-procs=4 -n1 sh -c 'ECHO -e "Optimizing\t\t${1:'${#dir}'} ..." && (optipng -o7 "$1" && advpng -z -4 "$1" && advdef -z -4 "$1" && pngcrush "$1" "$1.optimized" && rm "$1") > /dev/null && ECHO -e "Finished optimizing\t${1:'${#dir}'}"' -
+  echo ${files[@]} | xargs -r --max-procs=4 -n1 sh -c 'if [ -n "$PS1" ]; then echo -e "Optimizing\t\t${1:'${#dir}'} ..."; fi && (optipng -o7 "$1" && advpng -z -4 "$1" && advdef -z -4 "$1" && pngcrush "$1" "$1.optimized" && rm "$1") > /dev/null && if [ -n "$PS1" ]; then echo -e "Finished optimizing\t${1:'${#dir}'}"; fi' -
 }
 
 function humanReadable {
