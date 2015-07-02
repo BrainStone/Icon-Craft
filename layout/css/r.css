@@ -317,6 +317,12 @@ input[type="submit"]:focus {
 			box-shadow: 0px 0px 10px 5px #FFF;
 		}
 
+		body.sticky-header div.pre-header div.selected div {
+			-webkit-box-shadow: 0px 0px 10px 5px #CCC;
+			-moz-box-shadow: 0px 0px 10px 5px #CCC;
+			box-shadow: 0px 0px 10px 5px #CCC;
+		}
+
 		div.pre-header div div {
 			width: 22px;
 			height: 16px;
