@@ -120,10 +120,6 @@ a:hover {
 	color: #FF5;
 }
 
-.pre-header {
-	z-index: 1000;
-}
-
 .pre-footer * {
 	color: #fff;
 	font-family: Minecraftia;
@@ -168,6 +164,50 @@ a:hover {
 **	1/2. Header & Navigation 
 **	------------------------------------
 */
+
+.pre-header {
+	z-index: 1000;
+}
+
+div.pre-header div {
+  margin: 1px;
+  display: inline-block;
+  line-height: 0px;
+}
+
+div.pre-header div.selected {
+  margin: 0px;
+  border: 1px black solid;
+}
+
+div.pre-header div div {
+  position: relative;
+  overflow: hidden;
+  width: 22px;
+	height: 16px;
+  margin: 5px;
+}
+
+div.pre-header input {
+  position: absolute;
+  width: 82px;
+  height: 80px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;  
+}
+
+div.pre-header div.en input {
+  top: 0px;
+}
+
+div.pre-header div.de input {
+  top: -40px;
+}
+
+div.pre-header div div input {
+	left: -60px;
+}
 
 /*
 **	2. Forms 
@@ -250,6 +290,19 @@ input[type="submit"]:focus {
 	
 	@media (min-width: 800px) {
 		.r-1-2 { width: 100%; }
+
+		/*
+		**	Header & Navigation 
+		**	------------------------------------
+		*/
+
+		div.pre-header div div {
+			width: 60px;
+			height: 40px;
+			margin: 10px;
+		}
+
+		div.pre-header div div input{ left: 0px; }
 	}
 	
 	/*
