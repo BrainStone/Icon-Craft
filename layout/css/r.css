@@ -319,8 +319,14 @@ input[type="submit"]:focus {
 			text-shadow: 2px 2px 0 #3F3F3F;
 			transition: .2s all;
 		}
+		
+		.header-title h1 {
+			text-transform: uppercase;
+			font-size: 1.0em;
+			font-weight: normal;
+		}
 
-		body.sticky-header .header-title, body.sticky-header a {
+		body.sticky-header .header-title, body.sticky-header .header-title h1, body.sticky-header a {
 			color: #00AAAA;
 			text-shadow: none;
 			transition: .2s all;
