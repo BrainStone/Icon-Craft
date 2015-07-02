@@ -175,14 +175,17 @@ div.pre-header div {
 }
 
 div.pre-header div.selected div {
-	-webkit-box-shadow: 0px 0px 10px 5px rgba(255,255,255,1);
-	-moz-box-shadow: 0px 0px 10px 5px rgba(255,255,255,1);
-	box-shadow: 0px 0px 10px 5px rgba(255,255,255,1);
+	-webkit-box-shadow: 0px 0px 10px 5px #888;
+	-moz-box-shadow: 0px 0px 10px 5px #888;
+	box-shadow: 0px 0px 10px 5px #888;
 }
 
 div.pre-header div div {
 	position: relative;
 	overflow: hidden;
+	width: 60px;
+	height: 40px;
+	margin: 10px;
 }
 
 div.pre-header input {
@@ -192,6 +195,7 @@ div.pre-header input {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	border-radius: 0px;
+	left: 0px;
 }
 
 div.pre-header div.en input {
@@ -283,20 +287,6 @@ input[type="submit"]:focus {
 	
 	@media (min-width: 800px) {
 		.r-1-2 { width: 100%; }
-
-		/*
-		**	Header & Navigation 
-		**	------------------------------------
-		*/
-
-		div.pre-header div { margin: 10px; }
-
-		div.pre-header div div {
-			width: 60px;
-			height: 40px;
-		}
-
-		div.pre-header div div input{ left: 0px; }
 	}
 	
 	/*
@@ -318,6 +308,21 @@ input[type="submit"]:focus {
 			padding: 20px;
 			position: fixed;
 		}
+
+		div.pre-header div { margin: 3px; }
+
+		div.pre-header div.selected div {
+			-webkit-box-shadow: 0px 0px 10px 5px #FFF;
+			-moz-box-shadow: 0px 0px 10px 5px #FFF;
+			box-shadow: 0px 0px 10px 5px #FFF;
+		}
+
+		div.pre-header div div {
+			width: 22px;
+			height: 16px;
+		}
+
+		div.pre-header input { left: -60px; }
 
 		body .header {
 			width: 100%;
@@ -466,20 +471,6 @@ input[type="submit"]:focus {
 		.r-1-2, .r-1-8 { width: 50%; }
 		.r-1-3 { width: 33.33%; }
 		.r-2-3, .r-3-4, .r-7-8 { width: 66.66%; }
-
-		/*
-		**	Header & Navigation 
-		**	------------------------------------
-		*/
-
-		div.pre-header div { margin: 3px; }
-
-		div.pre-header div div {
-			width: 22px;
-			height: 16px;
-		}
-
-		div.pre-header div div input{ left: -60px; }
 	}
 	
 	/*
