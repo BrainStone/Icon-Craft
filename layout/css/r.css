@@ -178,6 +178,7 @@ div.pre-header div.selected div {
 	-webkit-box-shadow: 0px 0px 10px 5px #888;
 	-moz-box-shadow: 0px 0px 10px 5px #888;
 	box-shadow: 0px 0px 10px 5px #888;
+	transition: box-shadow .2s;
 }
 
 div.pre-header div div {
