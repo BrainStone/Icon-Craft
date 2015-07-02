@@ -170,14 +170,14 @@ a:hover {
 }
 
 div.pre-header div {
-	margin: 1px;
 	display: inline-block;
 	line-height: 0px;
 }
 
-div.pre-header div.selected {
-	margin: 0px;
-	border: 1px black solid;
+div.pre-header div.selected div {
+	-webkit-box-shadow: 0px 0px 10px 5px rgba(255,255,255,1);
+	-moz-box-shadow: 0px 0px 10px 5px rgba(255,255,255,1);
+	box-shadow: 0px 0px 10px 5px rgba(255,255,255,1);
 }
 
 div.pre-header div div {
@@ -289,10 +289,11 @@ input[type="submit"]:focus {
 		**	------------------------------------
 		*/
 
+		div.pre-header div { margin: 10px; }
+
 		div.pre-header div div {
 			width: 60px;
 			height: 40px;
-			margin: 10px;
 		}
 
 		div.pre-header div div input{ left: 0px; }
@@ -471,10 +472,11 @@ input[type="submit"]:focus {
 		**	------------------------------------
 		*/
 
+		div.pre-header div { margin: 3px; }
+
 		div.pre-header div div {
 			width: 22px;
 			height: 16px;
-			margin: 5px;
 		}
 
 		div.pre-header div div input{ left: -60px; }
