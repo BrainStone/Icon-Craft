@@ -309,7 +309,7 @@ input[type="submit"]:focus {
 			position: fixed;
 		}
 
-		div.pre-header div { margin: 3px; }
+		div.pre-header div { margin: -5px; }
 
 		div.pre-header div.selected div {
 			-webkit-box-shadow: 0px 0px 10px 5px #FFF;
