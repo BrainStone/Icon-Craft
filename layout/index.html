@@ -4,24 +4,18 @@
 		<meta charset="utf-8">
 		<title>Unbenanntes Dokument</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link type="text/css" rel="stylesheet" href="css/r.css">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-		<!-- Super Simple Slieder -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-		<script src="js/sss.min.js"></script>
-		<link rel="stylesheet" href="css/sss.css" type="text/css" media="all">
-		<script>
-			jQuery(function($) {
-			$('.slider').sss({
-				slideShow : true, // Set to false to prevent SSS from automatically animating.
-				startOn : 0, // Slide to display first. Uses array notation (0 = first slide).
-				transition : 1000, // Length (in milliseconds) of the fade transition.
-				speed : 7000, // Slideshow speed in milliseconds.
-				showNav : true // Set to false to hide navigation arrows.
-				});
-			});
-		</script>
+		<!-- Styles -->
+		<link type="text/css" rel="stylesheet" href="css/r.css">
+		<noscript id="loadCSS">
+			<link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+			<link rel="stylesheet" href="css/sss.css" type="text/css" media="all">
+		</noscript>
+
+		<!-- Scripts -->
+		<script defer src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<script defer src="js/sss.js"></script>
+		<script defer src="js/r.js"></script>
 	</head>
 
 	<body>
@@ -127,30 +121,5 @@
 		</div>
 
 		<a class="top" href="#top"><i class="fa fa-arrow-up"></i></a>
-
-		<script>
-			$(function(){
-				$(window).scroll(function(){
-					var winTop = $(window).scrollTop();
-					if(winTop > 0){
-					  $("body").addClass("sticky-header");
-					}else{
-					  $("body").removeClass("sticky-header");
-					}
-				});
-			});
-
-			$(document).ready(function() {
-				$('a[href*=#]').bind("click", function(event) {
-					event.preventDefault();
-					var ziel = $(this).attr("href");
-
-					$('html,body').animate({
-						scrollTop: $(ziel).offset().top
-					}, 1000 , function (){location.hash = ziel;});
-				});
-				return false;
-			});
-		</script>
 	</body>
 </html>
