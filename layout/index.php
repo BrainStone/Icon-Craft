@@ -1,5 +1,17 @@
+<?php
+header("Content-Type: text/html;charset=utf-8");
+
+require_once("../libraries/language.php");
+
+// Cache the page
+$max_cache_lifetime = 1800;
+require_once("../libraries/cache.php");
+// Make HTML as small as possible!
+require_once("../libraries/minimize.php");
+
+?>
 <!doctype html>
-<html>
+<html lang="<?php echo $_SESSION["language"]; ?>">
 	<head>
 		<meta charset="utf-8">
 		<title>Unbenanntes Dokument</title>
@@ -23,16 +35,10 @@
 		<div class="anchor" id="top"></div>
 		<div class="pre-header">
 			<form method="POST">
-				<div class="en">
-					<div>
-						<input src="/includes/images/sprite.png" alt="English" title="English" name="en" type="image">
-					</div>
-				</div>
-				<div class="de selected">
-					<div>
-						<input src="/includes/images/sprite.png" alt="Deutsch" title="Deutsch" name="de" type="image">
-					</div>
-				</div>
+				<?php
+					print_language_selector();
+				?>
+
 			</form>
 		</div>
 		<div class="header-background"></div>
