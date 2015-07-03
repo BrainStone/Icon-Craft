@@ -96,7 +96,7 @@
   function start_session() {
     if(session_id() == "") {
       session_start();
-      setcookie(session_name(), session_id(), time() + ini_get("session.cookie_lifetime"));
+      setcookie(session_name(), session_id(), time() + ini_get("session.cookie_lifetime"), "/");
     }
   }
 ?>
