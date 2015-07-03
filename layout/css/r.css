@@ -169,19 +169,19 @@ a:hover {
 	z-index: 1000;
 }
 
-div.pre-header div {
+dev.lang_selector div {
 	display: inline-block;
 	line-height: 0px;
 }
 
-div.pre-header div.selected div {
+dev.lang_selector div.selected div {
 	-webkit-box-shadow: 0px 0px 10px 5px #888;
 	-moz-box-shadow: 0px 0px 10px 5px #888;
 	box-shadow: 0px 0px 10px 5px #888;
 	transition: box-shadow .2s;
 }
 
-div.pre-header div div {
+dev.lang_selector div div {
 	position: relative;
 	overflow: hidden;
 	width: 60px;
@@ -189,7 +189,7 @@ div.pre-header div div {
 	margin: 10px;
 }
 
-div.pre-header input {
+dev.lang_selector input {
 	position: absolute;
 	width: 82px;
 	height: 80px;
@@ -199,11 +199,11 @@ div.pre-header input {
 	left: 0px;
 }
 
-div.pre-header div.en input {
+dev.lang_selector div.en input {
 	top: 0px;
 }
 
-div.pre-header div.de input {
+dev.lang_selector div.de input {
 	top: -40px;
 }
 
@@ -310,26 +310,26 @@ input[type="submit"]:focus {
 			position: fixed;
 		}
 
-		div.pre-header div { margin: -5px; }
+		dev.lang_selector div { margin: -5px; }
 
-		div.pre-header div.selected div {
+		dev.lang_selector div.selected div {
 			-webkit-box-shadow: 0px 0px 10px 5px #FFF;
 			-moz-box-shadow: 0px 0px 10px 5px #FFF;
 			box-shadow: 0px 0px 10px 5px #FFF;
 		}
 
-		body.sticky-header div.pre-header div.selected div {
+		body.sticky-header dev.lang_selector div.selected div {
 			-webkit-box-shadow: 0px 0px 10px 5px #CCC;
 			-moz-box-shadow: 0px 0px 10px 5px #CCC;
 			box-shadow: 0px 0px 10px 5px #CCC;
 		}
 
-		div.pre-header div div {
+		dev.lang_selector div div {
 			width: 22px;
 			height: 16px;
 		}
 
-		div.pre-header input { left: -60px; }
+		dev.lang_selector input { left: -60px; }
 
 		body .header {
 			width: 100%;
