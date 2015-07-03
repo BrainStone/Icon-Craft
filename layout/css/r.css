@@ -23,7 +23,7 @@
 
 @font-face {
 	font-family: Minecraftia;
-	src: local(Minecraftia), url(../font/Minecraftia.ttf) format("truetype");
+	src: local(Minecraftia), url(../font/Minecraftia.woff) format("woff"), url(../font/Minecraftia.ttf) format("truetype");
 }
 
 /*
