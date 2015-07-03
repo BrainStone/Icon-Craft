@@ -22,8 +22,8 @@
 */
 
 @font-face {
-    font-family: Minecraftia;
-    src: url(../font/Minecraftia.ttf);
+	font-family: Minecraftia;
+	src: local(Minecraftia), url(../font/Minecraftia.ttf) format("truetype");
 }
 
 /*
@@ -388,9 +388,9 @@ input[type="submit"]:focus {
 			font-weight: normal;
 		}
 
-		body.sticky-header .header-title, body.sticky-header .header-title h1 {
+		body.sticky-header .header-title, body.sticky-header .header-title h1, body.sticky-header .header-navigation a {
 			color: #00AAAA;
-			text-shadow: 2px 2px 1px #3F3F3F;
+			text-shadow: 2px 2px 1px #CCCCCC;
 			transition: .2s all;
 		}
 
