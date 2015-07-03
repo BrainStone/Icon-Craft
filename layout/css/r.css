@@ -125,6 +125,10 @@ a:hover {
 	font-family: Minecraftia;
 }
 
+.footer a {
+	color: #00AAAA;
+}
+
 .footer * {
 	color: #fff;
 	font-family: Minecraftia;
@@ -374,7 +378,7 @@ input[type="submit"]:focus {
 			font-size: 20px;
 			font-family: Minecraftia;
 			color: #FFF;
-			text-shadow: 2px 2px 0 #3F3F3F;
+			text-shadow: 2px 2px 1px #3F3F3F;
 			transition: .2s all;
 		}
 		
@@ -384,15 +388,15 @@ input[type="submit"]:focus {
 			font-weight: normal;
 		}
 
-		body.sticky-header .header-title, body.sticky-header .header-title h1, body.sticky-header a {
+		body.sticky-header .header-title, body.sticky-header .header-title h1 {
 			color: #00AAAA;
-			text-shadow: none;
+			text-shadow: 2px 2px 1px #3F3F3F;
 			transition: .2s all;
 		}
 
 		.header-navigation a {
 			color: #FFF;
-			text-shadow: 2px 2px 0 #3F3F3F;
+			text-shadow: 2px 2px 1px #3F3F3F;
 		}
 
 		.header-navigation {
@@ -541,7 +545,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: Minecraftia;
 	margin: 0 0 10px 0;
 	color: #FFF;
-	text-shadow: 2px 2px 0 #3F3F3F;
+	text-shadow: 2px 2px 1px #3F3F3F;
 	z-index: 10;
 }
 	
@@ -630,7 +634,7 @@ body.sticky-header a.top {
 	right: 20px;
 	transition: all .2s;
 	color: #00AAAA;
-	text-shadow: 2px 2px 0 #002A2A;
+	text-shadow: 2px 2px 1px #002A2A;
 	margin-bottom: 0px;
 }
 
