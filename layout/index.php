@@ -34,12 +34,10 @@ require_once("../libraries/minimize.php");
 	<body>
 		<div class="anchor" id="top"></div>
 		<div class="pre-header">
-			<form method="POST">
-				<?php
-					print_language_selector();
-				?>
+			<?php
+				print_language_selector();
+			?>
 
-			</form>
 		</div>
 		<div class="header-background"></div>
 		<div class="header">
