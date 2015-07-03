@@ -57,9 +57,9 @@ require_once("../libraries/minimize.php");
 		<div class="main">
 
 			<div class="slider">
-				<div class="slider-image" style="background-image: url('//dedelner.net/wp-content/uploads/2015/05/2015-05-30_21.50.55.jpg');"></div>
-				<div class="slider-image" style="background-image: url('//dedelner.net/wp-content/uploads/2015/05/2015-05-30_16.31.42.jpg');"></div>
-				<div class="slider-image" style="background-image: url('//dedelner.net/wp-content/uploads/2015/05/2015-05-24_22.05.17.jpg');"></div>
+				<div class="slider-image" style="background-image: url('img/slider/1.jpg');"></div>
+				<div class="slider-image" style="background-image: url('img/slider/2.jpg');"></div>
+				<div class="slider-image" style="background-image: url('img/slider/3.jpg');"></div>
 			</div>
 			<div class="dark-green">
 				<div class="container">
