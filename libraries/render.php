@@ -62,7 +62,7 @@
     $cache_final_image = true;
     $final_image_modid = "minecraft";
     $final_image_type = "crafting";
-    $final_image_item = $cache_path;
+    $final_image_item = $cache_name;
     $final_image_size = $size_factor * 16;
   }
 
