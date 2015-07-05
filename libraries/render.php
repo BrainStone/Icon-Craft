@@ -15,7 +15,7 @@
     } elseif(file_exists("$cache_path/base.png.optimized")) {
       $cache_file = "$cache_path/base.png.optimized";
     } elseif(file_exists("$cache_path/base.png")) {
-      $cache_file = "$cache_path/base.png.";
+      $cache_file = "$cache_path/base.png";
     } else {
       return null;
     }
