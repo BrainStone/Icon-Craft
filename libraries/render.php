@@ -1,47 +1,50 @@
 <?php
   require_once("mysql.php");
 
-  function image_from_cache($modid, $type, $item) {
-    global $size_x, $size_y;
+  function image_from_cache($modid, $type, $item, $size) {
+    global $size_x, $size_y, $final_cache_file;
 
-    $cache_path = "../cache/render/$modid/$type";
-    $cache_file = "$cache_path/$item.png";
+    $cache_path = "../cache/render/$modid/$type/$item";
     
-    if(file_exists($cache_file)) {
-      $im = imagecreatefrompng($cache_file);
-      touch($cache_file);
-      
-      $size_x = imagesx($im);
-      $size_y = imagesy($im);
-    } elseif(file_exists("$cache_file.optimized")) {
-      $im = imagecreatefrompng("$cache_file.optimized");
-      touch("$cache_file.optimized");
-      
-      $size_x = imagesx($im);
-      $size_y = imagesy($im);
+    if(file_exists("$cache_path/$size.png.optimized")) {
+      $cache_file = "$cache_path/$size.png.optimized";
+      $final_cache_file = $cache_file;
+    } elseif(file_exists("$cache_path/$size.png")) {
+      $cache_file = "$cache_path/$size.png";
+      $final_cache_file = $cache_file;
+    } elseif(file_exists("$cache_path/base.png.optimized")) {
+      $cache_file = "$cache_path/base.png.optimized";
+    } elseif(file_exists("$cache_path/base.png")) {
+      $cache_file = "$cache_path/base.png.";
     } else {
-      $im = null;
+      return null;
     }
+
+    $im = imagecreatefrompng($cache_file);
+    touch($cache_file);
+    
+    $size_x = imagesx($im);
+    $size_y = imagesy($im);
 
     return $im;
   }
 
-  function cache_image($modid, $type, $item, $im) {
-    $cache_path = "../cache/render/$modid/$type";
-    $cache_file = "$cache_path/$item.png";
+  function cache_image($modid, $type, $item, $im, $size) {
+    $cache_path = "../cache/render/$modid/$type/$item";
+    $cache_file = "$cache_path/$size.png";
     
     @mkdir($cache_path, 0775, true);
     imagepng($im, $cache_file);
   }
 
   function crafting_common($cache_name, $texture, $params, $positions, $size_factor) {
-    global $im, $final_size_x, $final_size_y, $set_404;
+    global $im, $final_size_x, $final_size_y, $set_404, $cache_final_image, $final_image_modid, $final_image_type, $final_image_item, $final_image_size;
 
     list($final_size_x, $final_size_y) = getimagesize($texture);
     $final_size_x *= $size_factor;
     $final_size_y *= $size_factor;
 
-    $im = image_from_cache("minecraft", "crafting", $cache_name);
+    $im = image_from_cache("minecraft", "crafting", $cache_name, $size_factor * 16);
 
     if($im === null) {
       $images = array();
@@ -52,10 +55,15 @@
 
       $im = render_crafting($texture, $images, $positions);
 
-      cache_image("minecraft", "crafting", $cache_name, $im);
+      cache_image("minecraft", "crafting", $cache_name, $im, "base");
     }
 
     $set_404 = false;
+    $cache_final_image = true;
+    $final_image_modid = "minecraft";
+    $final_image_type = "crafting";
+    $final_image_item = $cache_path;
+    $final_image_size = $size_factor * 16;
   }
 
   function crafting($params) {
@@ -114,7 +122,7 @@
   }
 
   function block($params) {
-    global $mysqli, $set_404;
+    global $mysqli, $set_404, $final_size, $cache_final_image, $final_image_modid, $final_image_type, $final_image_item, $final_image_size;
 
     $item = $params[0];
 
@@ -159,7 +167,7 @@
       
       switch($row["RenderAs"]) {
       case "Block":
-        $im = image_from_cache($modid, "blocks", $item);
+        $im = image_from_cache($modid, "blocks", $item, $final_size);
         
         if($im === null) {
           require_once("renderers/block_renderer.php");
@@ -167,14 +175,27 @@
           list($left, $top, $right) = explode(",", $row["Textures"]);        
           $im = render_block($left, $top, $right);
           
-          cache_image($modid, "blocks", $item, $im);
+          cache_image($modid, "blocks", $item, $im, "base");
         }
+
+        $final_image_modid = $modid;
+        $final_image_type = "blocks";
+        $final_image_item = $item;
+        $final_image_size = $final_size;
         
         break;
       case "Item":
         require_once("renderers/item_renderer.php");
+
+        $im = image_from_cache($modid, "items", $item, $final_size);
         
-        $im = render_item($row["Textures"]);
+        f($im === null)
+          $im = render_item($row["Textures"]);
+
+        $final_image_modid = $modid;
+        $final_image_type = "items";
+        $final_image_item = $item;
+        $final_image_size = $final_size;
         
         break;
       }
@@ -210,6 +231,8 @@
 
       imagettftext($im, 768, 0, 2176 - $width, 2048, $black, "../includes/css/fonts/Minecraftia.ttf", $number);
       imagettftext($im, 768, 0, 2048 - $width, 1920, $white, "../includes/css/fonts/Minecraftia.ttf", $number);
+
+      $cache_final_image = false;
     }
 
     return $im;
@@ -222,6 +245,7 @@
   $set_404 = false;
   $params = explode("/", urldecode(strtolower($_SERVER["REQUEST_URI"])));
   $im = null;
+  $cache_final_image = true;
   array_shift($params);
   connect_mysqli();
   $number_of_params = sizeof($params);
@@ -272,9 +296,9 @@
     // Custom item creation processes like custom furnaces from mods
     // TODO Special
   } else {
-    $im = block($params);
-
     $final_size = (isset($params[1]) && is_numeric($params[1])) ? min(4096, max(8, intval($params[1]))) : 32;
+
+    $im = block($params);
   }
 
   if($im === null) {
@@ -303,10 +327,18 @@
   }
   
   // Resizing
-  $image = imagecreatetruecolor($final_size_x, $final_size_y);
-  imagealphablending($image, false);
-  imagesavealpha($image, true);
-  imagecopyresampled($image, $im, 0, 0, 0, 0, $final_size_x, $final_size_y, $size_x, $size_y);
-  
-  $create_image($image);
+  if(isset($final_cache_file) && ($final_size_x == $size_x) && ($final_size_y == $size_y) && ($create_image == "imagepng")) {
+    readfile($final_cache_file);
+  } else {
+    $image = imagecreatetruecolor($final_size_x, $final_size_y);
+    imagealphablending($image, false);
+    imagesavealpha($image, true);
+    imagecopyresampled($image, $im, 0, 0, 0, 0, $final_size_x, $final_size_y, $size_x, $size_y);
+    
+    $create_image($image);
+
+    if($cache_final_image && ($create_image == "imagepng")) {
+      cache_image($final_image_modid, $final_image_type, $final_image_item, $image, $final_image_size);
+    }
+  }
 ?>
