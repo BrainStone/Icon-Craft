@@ -189,7 +189,7 @@
 
         $im = image_from_cache($modid, "items", $item, $final_size);
         
-        f($im === null)
+        if($im === null)
           $im = render_item($row["Textures"]);
 
         $final_image_modid = $modid;
