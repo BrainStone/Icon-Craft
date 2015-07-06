@@ -11,7 +11,7 @@
     if (is_file($str)) {
       return @unlink($str);
     } elseif (is_dir($str)) {
-      $scan = glob(rtrim($str,'/').'/*');
+      $scan = glob(rtrim($str,'/').'/{,.}*', GLOB_BRACE);
 
       foreach($scan as $index=>$path) {
         recursiveDelete($path);
