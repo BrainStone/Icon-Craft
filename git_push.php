@@ -1,6 +1,25 @@
 <?php
   require_once("libraries/passwords.php");
   require_once("libraries/util.php");
+
+  /**
+  * Delete a file or recursively delete a directory
+  *
+  * @param string $str Path to file or directory
+  */
+  function recursiveDelete($str) {
+    if (is_file($str)) {
+      return @unlink($str);
+    } elseif (is_dir($str)) {
+      $scan = glob(rtrim($str,'/').'/*');
+
+      foreach($scan as $index=>$path) {
+        recursiveDelete($path);
+      }
+
+      return @rmdir($str);
+    }
+  }
   
   header("Content-type: text/html;charset=utf-8");
 
@@ -35,6 +54,8 @@
 
           $message .= "\n\n-----------------------------------------------------------------------------\n\n";
         }
+
+        recursiveDelete(__DIR__ . "/cache/html");
 
         // Strip the last line from the message and send it to the update mail.
         mail($passwords->github->email, "Updated Icon-Craft.net", substr($message, 0, -82));
