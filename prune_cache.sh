@@ -19,4 +19,5 @@ then
 
   # Find all files that haven't been used in at least 30 days and delete them.
   time find /var/www/icon-craft/cache/render/ -type f -mtime +30 -exec rm -v {} \;
+  find /var/www/icon-craft/cache/render/ -type d -empty -exec rmdir {} \;
 fi
