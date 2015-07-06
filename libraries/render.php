@@ -337,7 +337,7 @@
     
     $create_image($image);
 
-    if($cache_final_image && ($create_image == "imagepng")) {
+    if($cache_final_image && ($create_image == "imagepng") && !$set_404) {
       cache_image($final_image_modid, $final_image_type, $final_image_item, $image, $final_image_size);
     }
   }
