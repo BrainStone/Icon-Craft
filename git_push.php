@@ -13,8 +13,9 @@
     } elseif (is_dir($str)) {
       $scan = glob(rtrim($str,'/').'/{,.}*', GLOB_BRACE);
 
-      foreach($scan as $index=>$path) {
-        recursiveDelete($path);
+      foreach($scan as $path) {
+        if(!preg_match("@/\.\.?$@"))
+          recursiveDelete($path);
       }
 
       return @rmdir($str);
