@@ -63,7 +63,7 @@
   }
 
   function crafting_common($cache_name, $texture, $params, $positions, $size_factor) {
-    global $im, $final_size_x, $final_size_y, $set_404, $final_image_modid, $final_image_type, $final_image_item, $final_image_size;
+    global $im, $number, $final_size_x, $final_size_y, $set_404, $final_image_modid, $final_image_type, $final_image_item, $final_image_size;
 
     list($final_size_x, $final_size_y) = getimagesize($texture);
     $final_size_x *= $size_factor;
@@ -84,6 +84,7 @@
     }
 
     $set_404 = false;
+    $number = 1;
     $final_image_modid = "minecraft";
     $final_image_type = "crafting";
     $final_image_item = $cache_name;
@@ -146,7 +147,7 @@
   }
 
   function block($params) {
-    global $mysqli, $set_404, $final_size, $final_image_modid, $final_image_type, $final_image_item, $final_image_size;
+    global $mysqli, $set_404, $number, $final_size, $final_image_modid, $final_image_type, $final_image_item, $final_image_size;
 
     $item = $params[0];
 
@@ -161,8 +162,6 @@
 
       return $im;
     }
-
-    $number = 1;
 
     if(preg_match("/^\\d{1,2}x/", $item)) {
       list($number, $item) = explode("x", $item, 2);
@@ -270,6 +269,7 @@
   header('Cache-Control: "public, must-revalidate, proxy-revalidate"');
   
   $set_404 = false;
+  $number = 1;
   $params = explode("/", urldecode(strtolower($_SERVER["REQUEST_URI"])));
   $im = null;
   array_shift($params);
@@ -356,7 +356,7 @@
     $create_image($image);
 
     if(($create_image == "imagepng") && !$set_404) {
-      cache_image($final_image_modid, $final_image_type, $final_image_item, $image, $final_image_size);
+      cache_image($final_image_modid, $final_image_type, $final_image_item, $image, $final_image_size, $number);
     }
   }
 ?>
