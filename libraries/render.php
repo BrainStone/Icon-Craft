@@ -1,10 +1,25 @@
 <?php
   require_once("mysql.php");
 
-  function image_from_cache($modid, $type, $item, $size) {
+  function add_number($im, $count) {
+    if($count != 1) {
+      $width = imagettfbbox(768, 0, "../includes/css/fonts/Minecraftia.ttf", $count)[2];
+
+      $white = imagecolorallocate($im, 255, 255, 255);
+      $black = imagecolorallocate($im, 63, 63, 63);
+
+      imagettftext($im, 768, 0, 2176 - $width, 2048, $black, "../includes/css/fonts/Minecraftia.ttf", $count);
+      imagettftext($im, 768, 0, 2048 - $width, 1920, $white, "../includes/css/fonts/Minecraftia.ttf", $count);
+    }
+  }
+
+  function image_from_cache($modid, $type, $item, $size, $count = 1) {
     global $size_x, $size_y, $final_cache_file;
 
-    $cache_path = "../cache/render/$modid/$type/$item";
+    if($count == 1)
+      $cache_path = "../cache/render/$modid/$type/$item";
+    else
+      $cache_path = "../cache/render/$modid/$type/$item/{$count}x";
     
     if(file_exists("$cache_path/$size.png.optimized")) {
       $cache_file = "$cache_path/$size.png.optimized";
@@ -16,6 +31,12 @@
       $cache_file = "$cache_path/base.png.optimized";
     } elseif(file_exists("$cache_path/base.png")) {
       $cache_file = "$cache_path/base.png";
+    } elseif(($count != 1) && (($im = image_from_cache($modid, $type, $item, "base")) !== null)) {
+      add_number($im, $count);
+
+      cache_image($modid, $type, $item, $im, "base", $count);
+
+      return $im;
     } else {
       return null;
     }
@@ -29,8 +50,12 @@
     return $im;
   }
 
-  function cache_image($modid, $type, $item, $im, $size) {
-    $cache_path = "../cache/render/$modid/$type/$item";
+  function cache_image($modid, $type, $item, $im, $size, $count = 1) {
+    if($count == 1)
+      $cache_path = "../cache/render/$modid/$type/$item";
+    else
+      $cache_path = "../cache/render/$modid/$type/$item/{$count}x";
+
     $cache_file = "$cache_path/$size.png";
     
     @mkdir($cache_path, 0775, true);
@@ -38,7 +63,7 @@
   }
 
   function crafting_common($cache_name, $texture, $params, $positions, $size_factor) {
-    global $im, $final_size_x, $final_size_y, $set_404, $cache_final_image, $final_image_modid, $final_image_type, $final_image_item, $final_image_size;
+    global $im, $final_size_x, $final_size_y, $set_404, $final_image_modid, $final_image_type, $final_image_item, $final_image_size;
 
     list($final_size_x, $final_size_y) = getimagesize($texture);
     $final_size_x *= $size_factor;
@@ -59,7 +84,6 @@
     }
 
     $set_404 = false;
-    $cache_final_image = true;
     $final_image_modid = "minecraft";
     $final_image_type = "crafting";
     $final_image_item = $cache_name;
@@ -122,7 +146,7 @@
   }
 
   function block($params) {
-    global $mysqli, $set_404, $final_size, $cache_final_image, $final_image_modid, $final_image_type, $final_image_item, $final_image_size;
+    global $mysqli, $set_404, $final_size, $final_image_modid, $final_image_type, $final_image_item, $final_image_size;
 
     $item = $params[0];
 
@@ -132,16 +156,18 @@
       // Transparentbackground
       imagealphablending($im, true);
       imagesavealpha($im, true);
-      $trans = imagecolorallocatealpha($im, 0, 0, 0, 127);
+      $trans = imagecolorallocatealpha($im, 255, 255, 255, 127);
       imagefill($im, 0, 0, $trans);
 
       return $im;
     }
 
-    $number = null;
+    $number = 1;
 
     if(preg_match("/^\\d{1,2}x/", $item)) {
       list($number, $item) = explode("x", $item, 2);
+
+      $number = min(99, max(0, $number));
     } 
     
     if(strpos($item, ":") === false) {
@@ -167,7 +193,7 @@
       
       switch($row["RenderAs"]) {
       case "Block":
-        $im = image_from_cache($modid, "blocks", $item, $final_size);
+        $im = image_from_cache($modid, "blocks", $item, $final_size, $number);
         
         if($im === null) {
           require_once("renderers/block_renderer.php");
@@ -176,6 +202,12 @@
           $im = render_block($left, $top, $right);
           
           cache_image($modid, "blocks", $item, $im, "base");
+
+          if($number != 1) {
+            add_number($im, $number);
+
+            cache_image($modid, "blocks", $item, $im, "base", $number);
+          }
         }
 
         $final_image_modid = $modid;
@@ -187,10 +219,17 @@
       case "Item":
         require_once("renderers/item_renderer.php");
 
-        $im = image_from_cache($modid, "items", $item, $final_size);
+        $im = image_from_cache($modid, "items", $item, $final_size, $number);
         
-        if($im === null)
+        if($im === null) {
           $im = render_item($row["Textures"]);
+
+          if($number != 1) {
+            add_number($im, $number);
+
+            cache_image($modid, "items", $item, $im, "base", $number);
+          }
+        }
 
         $final_image_modid = $modid;
         $final_image_type = "items";
@@ -223,18 +262,6 @@
       $im = render_block("", "", "");
     }
 
-    if(($number !== null) && ($number != 1)) {
-      $width = imagettfbbox(768, 0, "../includes/css/fonts/Minecraftia.ttf", $number)[2];
-
-      $white = imagecolorallocate($im, 255, 255, 255);
-      $black = imagecolorallocate($im, 63, 63, 63);
-
-      imagettftext($im, 768, 0, 2176 - $width, 2048, $black, "../includes/css/fonts/Minecraftia.ttf", $number);
-      imagettftext($im, 768, 0, 2048 - $width, 1920, $white, "../includes/css/fonts/Minecraftia.ttf", $number);
-
-      $cache_final_image = false;
-    }
-
     return $im;
   }
   
@@ -245,7 +272,6 @@
   $set_404 = false;
   $params = explode("/", urldecode(strtolower($_SERVER["REQUEST_URI"])));
   $im = null;
-  $cache_final_image = true;
   array_shift($params);
   connect_mysqli();
   $number_of_params = sizeof($params);
@@ -267,14 +293,6 @@
       header("Content-Type: image/png");
 
       $create_image = "imagepng";
-    } elseif (($extension == "wbmp") && ($available_extensions & IMG_WBMP)) {
-      header("Content-Type: image/vnd.wap.wbmp");
-      
-      $create_image = "imagewbmp";
-    } elseif (($extension == "xbm") && ($available_extensions & IMG_XPM)) {
-      header("Content-Type: image/xbm");
-      
-      $create_image = "imagexbm";
     } else {
       header("Content-Type: image/png");
 
@@ -337,7 +355,7 @@
     
     $create_image($image);
 
-    if($cache_final_image && ($create_image == "imagepng") && !$set_404) {
+    if(($create_image == "imagepng") && !$set_404) {
       cache_image($final_image_modid, $final_image_type, $final_image_item, $image, $final_image_size);
     }
   }
