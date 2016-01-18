@@ -349,8 +349,12 @@
     readfile($final_cache_file);
   } else {
     $image = imagecreatetruecolor($final_size_x, $final_size_y);
+
     imagealphablending($image, false);
     imagesavealpha($image, true);
+    $white = imagecolorallocate($image, 255, 255, 255, 127);
+    imagefill($image, 0, 0, $white);
+
     imagecopyresampled($image, $im, 0, 0, 0, 0, $final_size_x, $final_size_y, $size_x, $size_y);
     
     $create_image($image);
