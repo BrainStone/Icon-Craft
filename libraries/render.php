@@ -353,14 +353,13 @@
   } else {
     $image = imagecreatetruecolor($final_size_x, $final_size_y);
 
-    if($transparent_background) {
-      imagesavealpha($image, true);
-    } else {
+    if(!$transparent_background) {
       $white = imagecolorallocate($image, 255, 255, 255);
       imagefill($image, 0, 0, $white);
     }
-
+    
     imagealphablending($image, true);
+    imagesavealpha($image, true);
 
     imagecopyresampled($image, $im, 0, 0, 0, 0, $final_size_x, $final_size_y, $size_x, $size_y);
     
