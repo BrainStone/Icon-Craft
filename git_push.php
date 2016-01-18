@@ -14,7 +14,7 @@
       $scan = glob(rtrim($str,'/').'/{,.}*', GLOB_BRACE);
 
       foreach($scan as $path) {
-        if(!preg_match("@/\.\.?$@"))
+        if(preg_match("@/\.\.?$@", $path) === 0)
           recursiveDelete($path);
       }
 
