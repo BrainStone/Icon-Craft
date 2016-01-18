@@ -270,7 +270,7 @@
   
   $set_404 = false;
   $number = 1;
-  $requires_white_background = false;
+  $transparent_background = true;
   $params = explode("/", urldecode(strtolower($_SERVER["REQUEST_URI"])));
   $im = null;
   array_shift($params);
@@ -286,12 +286,12 @@
       header("Content-Type: image/gif");
       
       $create_image = "imagegif";
-      $requires_white_background = true;
+      $transparent_background = false;
     } elseif ((($extension == "jpg") || ($extension == "jpeg")) && ($available_extensions & IMG_JPG)) {
       header("Content-Type: image/jpeg");
       
       $create_image = "imagejpeg";
-      $requires_white_background = true;
+      $transparent_background = false;
     } elseif (($extension == "png") && ($available_extensions & IMG_PNG)) {
       header("Content-Type: image/png");
 
@@ -352,16 +352,18 @@
     readfile($final_cache_file);
   } else {
     $image = imagecreatetruecolor($final_size_x, $final_size_y);
-
     imagealphablending($image, true);
-    imagesavealpha($image, true);
 
-    if($requires_white_background) {
+    if($transparent_background) {
+      imagesavealpha($image, true);
+    } else {
       $white = imagecolorallocate($image, 255, 255, 255);
       imagefill($image, 0, 0, $white);
     }
 
     imagecopyresampled($image, $im, 0, 0, 0, 0, $final_size_x, $final_size_y, $size_x, $size_y);
+
+    imagealphablending($image, false);
     
     $create_image($image);
 
